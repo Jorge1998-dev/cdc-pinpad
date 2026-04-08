@@ -1,0 +1,26 @@
+# Core breakpoints - Void / Trans.LAF path
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10374 -> procedure VoidPostedTransaction(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10400 -> RefundMgt.InitRefund(RefundTransaction, REC."Receipt No.");
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10403 -> if not RefundMgt.RetrieveTransactionToRefundByReceipt(CurrInput, RefundTransaction, ErrorCode, ErrorText) then begin
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10432 -> POSTransactionEvents.OnAfterVoidPostedTransaction(REC);
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10455 -> RefundPressed(false);
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10475 -> if (RefundTransaction.Date = Today) and (not EFT.DisableVoidCardPrompt) then begin
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10476 -> POSTransactionEvents.OnBeforeTestVoidCardEntryProcessRefundSelection(IsHandled);
+
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:754 -> procedure VoidCard(...)
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:759 -> POSTransactionEvents.OnBeforeVoidCard(REC, LineRec, VoidCardEntry, pCardEntryNo, IsHandled);
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:546 -> if EFTUtil2OPT.VoidCardEntry2(CardEntryToVoid, REC."Receipt No.", true, pVoidedCardEntryNo, ErrorReason) then begin
+
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:595 -> CardEntry."Receipt No." := receiptNo;
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:622 -> cuConnect.SendVoid(OrgCardEntry."Voucher Number", CardEntry, OrgCardEntry."Tender Type");
+
+src/codeunit/Cod60000.ConnectCom.al:386 -> procedure SendVoid(...)
+src/codeunit/Cod60000.ConnectCom.al:440 -> PosTransaction.SetRange("Receipt No.", pReceipt."Receipt No.");
+src/codeunit/Cod60000.ConnectCom.al:546 -> FindTransLafise.SetRange("Receipt No.", PosTransaction."Retrieved from Receipt No.");
+src/codeunit/Cod60000.ConnectCom.al:548 -> if FindTransLafise.FindLast() then begin
+src/codeunit/Cod60000.ConnectCom.al:562 -> pTable."Card Number" := FindTransLafise."Card Number";
+src/codeunit/Cod60000.ConnectCom.al:594 -> pReceipt."Card Number" := cprint.SetCardNumber(pTable."Card Number");
+
+src/codeunit/Cod60004.ConectApi.al:36 -> IF not HttpClient.Send(request, HttpResponse) then
+src/codeunit/Cod60004.ConectApi.al:39 -> HttpResponse.Content.ReadAs(XMLStream);
+src/codeunit/Cod60004.ConectApi.al:46 -> IF not HttpResponse.IsSuccessStatusCode then

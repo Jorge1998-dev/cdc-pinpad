@@ -1,0 +1,1320 @@
+# Breakpoint map - Void flow
+# file:line -> signature
+
+## src/codeunit/Cod60000.ConnectCom.al
+src/codeunit/Cod60000.ConnectCom.al:4 -> procedure Check(var SetupPinpad: Record "OPT Serial Port Setup")
+src/codeunit/Cod60000.ConnectCom.al:73 -> procedure SendSale(pAmount: Decimal; pReceipt: Text[100]; pCurrency: Text; REC: Record "LSC POS Transaction"; pTendertype: text; pPaymenAmount: Decimal) CurrencyResp: Text
+src/codeunit/Cod60000.ConnectCom.al:386 -> procedure SendVoid(pVoucher: text; var pReceipt: Record "LSC POS Card Entry"; pTendertype: Text)
+src/codeunit/Cod60000.ConnectCom.al:617 -> procedure GetTenderType(): Code[10]
+src/codeunit/Cod60000.ConnectCom.al:623 -> procedure SetTenderType(pTenderType: Code[10])
+src/codeunit/Cod60000.ConnectCom.al:630 -> procedure GetJsonTextField(O: JsonObject; NameObject: Text): Text
+src/codeunit/Cod60000.ConnectCom.al:638 -> local procedure GetStructuredSaleError(ResponseJson: JsonObject; IdError: Text): Text
+src/codeunit/Cod60000.ConnectCom.al:701 -> local procedure TryGetPinpadErrorFromField(FieldValue: Text; var ErrorText: Text): Boolean
+src/codeunit/Cod60000.ConnectCom.al:750 -> local procedure StripSecondaryNumericCode(DetailText: Text): Text
+src/codeunit/Cod60000.ConnectCom.al:775 -> local procedure IsErrorSeparator(ValueChar: Text[1]): Boolean
+src/codeunit/Cod60000.ConnectCom.al:783 -> local procedure GetFirstErrorSeparatorPosition(ValueText: Text): Integer
+src/codeunit/Cod60000.ConnectCom.al:809 -> local procedure TryGetMappedPinpadError(CodeText: Text; var ErrorText: Text): Boolean
+src/codeunit/Cod60000.ConnectCom.al:827 -> local procedure RaisePinpadError(var pTable: Record "Trans. LAF"; ErrorText: Text; POSGUI: Codeunit "LSC POS GUI")
+src/codeunit/Cod60000.ConnectCom.al:847 -> local procedure ReadJSON(JsonObjectText: Text): Text
+src/codeunit/Cod60000.ConnectCom.al:895 -> procedure SendSettle()
+src/codeunit/Cod60000.ConnectCom.al:1071 -> procedure SenRepDetail()
+src/codeunit/Cod60000.ConnectCom.al:1249 -> procedure SendRefund(pAmount: Decimal; pReceipt: Text[100]; pCurrency: Text; REC: Record "LSC POS Transaction"; pTendertype: text; pPaymenAmount: Decimal)
+src/codeunit/Cod60000.ConnectCom.al:1408 -> local procedure Errores()
+src/codeunit/Cod60000.ConnectCom.al:1415 -> procedure InitTextVariable()
+src/codeunit/Cod60000.ConnectCom.al:1482 -> procedure ScreenDisplay(pText: Text)
+
+## src/codeunit/Cod60004.ConectApi.al
+src/codeunit/Cod60004.ConectApi.al:3 -> trigger OnRun()
+src/codeunit/Cod60004.ConectApi.al:7 -> procedure GetApi(TextoBody: Text; URLApi: Text[250]): Text
+
+## src/codeunit/Cod60005.OPTPOSTransactionImpl.al
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7 -> trigger OnRun()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:289 -> procedure Init(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:736 -> procedure IsInitialized(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:741 -> procedure SetOfflineTenderDeclState(pCommand: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:765 -> procedure Close(FromStart: Boolean): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:809 -> procedure GetCommandRetVal(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:814 -> procedure ValidateInput()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:889 -> procedure Gui(): Codeunit "OPTs POS Transaction GUI"
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:894 -> procedure Member()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:899 -> procedure EFT(): Codeunit "OPT POS Transaction EFT"
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:904 -> procedure TSUtil(): Codeunit "LSC POS Trans. Server Utility"
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:914 -> procedure ActiveMemberCardNo(): Text
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:919 -> procedure ValidateRecordIDInput(pRecordID: RecordID; pConfirmSelection: Boolean): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:1044 -> procedure RunCommand(var MenuLine: Record "LSC POS Menu Line"): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:1583 -> local procedure PopulatePOSMenuLineForCodeunitRun(Command: Code[20]; Parameter: Text; var POSMenuLineIn: Record "LSC POS Menu Line"; POSTransLine: Record "LSC POS Trans. Line"; UseLineRec: Boolean; UseDefaultMenus: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:1624 -> procedure ProcessExternalCommand(POSMenuLineIn: Record "LSC POS Menu Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:1662 -> procedure ProcessPopupCommand(POSMenuLineIn: Record "LSC POS Menu Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:1684 -> procedure GetFunctionMode(): Code[20]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:1694 -> procedure SetFunctionMode(PosCommand: Enum "LSC POS Command")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:1699 -> procedure SetFunctionMode(FunctionCode: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:1710 -> procedure ItemLine(ToSalesMenu: Boolean; ExtPrice: Boolean; FixedQty: Decimal; ParentLineIn: Integer; VarCodeIn: Code[10]; FixMixMatch: Code[20]; FromInfocode: Code[20]; FromSubcode: Code[20]; FromEntryNo: Integer; FromSelQty: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:2105 -> procedure NextItemPhase()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:2281 -> procedure InsertItemLine()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:2648 -> local procedure InsertItemLine2()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:2687 -> procedure ValidateVariant()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:2738 -> procedure InsertPaymentLine()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:2745 -> procedure InsertPaymentLine(UseLineNo: Integer; var CardEntry: Record "LSC POS Card Entry")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:2841 -> procedure InsertPreauthInfoLine(var pCardEntry: Record "LSC POS Card Entry")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:2872 -> procedure TransactionTendered()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:3130 -> local procedure CustomerOrderPayment(POSTransLine: Record "LSC POS Trans. Line"; var NoExchangeAddedToCO: Boolean): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:3224 -> procedure CheckIfUserWantsToAddExtraPaymentToCO(NonCustomerOrderAmount: Decimal; AllreadyPaid: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:3266 -> procedure CheckForCODepositRemainingAmount(): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:3292 -> procedure CardOnFilePressed(TenderTypeCode: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:3301 -> procedure TenderKeyPressed(TenderTypeCode: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:3308 -> procedure TenderKeyPressedEx(TenderTypeCode: Code[10]; TenderAmountText: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:3865 -> local procedure AskForQRCode()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:3883 -> procedure TenderNoPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:3895 -> procedure CustomerPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:3926 -> procedure ChangeStaff(KeyValue: Text[30])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:3939 -> procedure AskForCard()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:3961 -> procedure EFTActive(ShowError: Boolean): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:3972 -> procedure PreauthPressed(pCommand: Text; pParameter: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:3987 -> procedure CollectSPGOrderPressed(pMenuLine: Record "LSC POS Menu Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4010 -> procedure ValidateCard(TokenSelectionValue: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4017 -> procedure ValidateCard()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4024 -> procedure ValidateCard(var pCardEntry: Record "LSC POS Card Entry")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4029 -> procedure ValidateCard(var pCardEntry: Record "LSC POS Card Entry"; pTransType: Option Sale,Preauth,"Update-Preauth","Finalize-Preauth")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4077 -> procedure NextCardPhase()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4090 -> procedure ValidateCardType()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4115 -> procedure ValidateCardExtra()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4128 -> procedure SeekAuthorisation()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4139 -> procedure InsertCardPaymentLine(pCardEntryNo: Integer)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4228 -> procedure PrintCardSlips(cardSlipNo: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4239 -> procedure AskForCustomer()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4246 -> procedure SetCustomer(pCustomerNo: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4263 -> procedure ValidateCustomer(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4386 -> procedure ProcessCustomer(pChangeState: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4610 -> procedure TestCustomer(CustomerNo: Code[20]; KeyboardAmount: Boolean; Charge: Boolean): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4627 -> procedure PaymentIntoAccountPressed(Tender: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4663 -> procedure IncExpLine()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4702 -> procedure IncExpLineEx()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4739 -> procedure InsertIncExpLine()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4780 -> procedure ValidateDate()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4799 -> procedure ValidateControl()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4815 -> procedure ValidatePassword()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4827 -> procedure ValidateDisc(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4869 -> procedure DiscPrPressed(Value: Text[30])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4929 -> procedure DiscPrPressedEx(Dec: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4972 -> procedure DiscPrPressedOnDeal(Dec: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:4992 -> procedure DiscPrPressedOnDealEx(Dec: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5017 -> procedure DiscAmPressed(Value: Text[30]; PayAmount: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5125 -> local procedure DiscAmountGetAmountToDiscount(POSTransLine: Record "LSC POS Trans. Line"): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5144 -> procedure DiscAmPressedEx(DecPr: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5188 -> procedure DiscAmtPressedOnDeal(DiscAmt: Decimal; PayAmount: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5255 -> local procedure DiscAmtPressedOnDealEx(DiscAmt: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5309 -> procedure DiscResetPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5351 -> procedure ChangeQtyPressed(Value: Text[30])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5616 -> procedure ChangeQtyPressedEx()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5636 -> procedure UpdateQty(UpdLineRec: Record "LSC POS Trans. Line"; UpdFactor: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5662 -> procedure ChangePricePressed(Value: Text[30])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5753 -> internal procedure ChangePricePressedEx(Dec: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5781 -> procedure AskForPrice()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5795 -> procedure ValidatePrice(var Price: Decimal; OrgPrice: Decimal; ItemNo: Code[20]): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5832 -> procedure AskForQuantity()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5840 -> procedure ValidateQuantity(NewQuantity: Decimal; Line: Record "LSC POS Trans. Line"): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5890 -> procedure ValidateQtyInput()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5906 -> procedure CheckInfoCode(Module: Code[10]): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:5976 -> procedure ProcessInfoCode(SubCode: Code[20]; CodeIsSet: Boolean; Requested: Option AutoOnly,All,RequestOnly; InfocodeOnHeader: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:6353 -> local procedure ProcessInfoCodeInput(Requested: Integer; InfocodeOnHeader: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:6370 -> procedure ProcessInfoCodeEx(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:6461 -> procedure ValidateInfocode(Requested: Option AutoOnly,All,RequestOnly; InfocodeOnHeader: Boolean; OneSubcode: Boolean): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:6581 -> local procedure RunTSError(InfoEntryNo: Integer): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:6606 -> internal procedure CalcPrices(var PosTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:6611 -> internal procedure InsertLine(var PosTransLine: Record "LSC POS Trans. Line"; UseLineNo: Integer)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:6616 -> procedure CalcTotals()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:6637 -> local procedure UpdatemarkedLinesInCo()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:6650 -> procedure SetStaffID(pStaffID: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:6687 -> procedure TotalPressed(pSkipTenderDiscAtTotal: Boolean): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:6928 -> procedure PostPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:6940 -> procedure TotDiscAmPressed(Value: Text[30]; TotAmount: Boolean; InfocodeCheck: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7109 -> procedure TotDiscPrPressed(Value: Text[30]; InfocodeCheck: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7240 -> procedure SalePressed(Keyed: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7245 -> procedure SalePressed(Keyed: Boolean; FromInit: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7291 -> procedure RefundPressed(Keyed: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7327 -> procedure AmountKeyPressed(TxtAmount: Text[50])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7332 -> procedure CurrencyKeyPressed(CurrCode: Code[10]; CurrStatus: Integer)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7523 -> procedure InfoKeyPressed(var MenuLine: Record "LSC POS Menu Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7571 -> procedure TenderOp(Type: Integer): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7601 -> procedure CardTypeKeyPressed(CardCode: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7636 -> procedure PostTransaction(PrintTransaction: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7683 -> procedure GetLastCardEntryReceiptNo(): Code[20]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7694 -> procedure PrintXReport(DoCheck: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7744 -> procedure PrintZReport(DoChecks: Boolean; AskUser: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7854 -> procedure RunObjPressed(ObjCode: Code[10]; Source: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7885 -> procedure VoidPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7981 -> local procedure ClearAndDeleteAllCOTempVariables()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:7993 -> procedure VoidTransaction()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8104 -> procedure VoidLinePressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8209 -> procedure VoidSingleLine(var DisplayErrorText: text): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8532 -> procedure VoidLinePressedEx(NoOfVoidedLines: Integer; DescrOfLastVoidedLine: Text; ShowOnDisplay: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8573 -> procedure VoidLinkedLines(VoidedLineNo: Integer)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8588 -> local procedure CalcVoidedLineCOPrePayment(VoidedLineNo: Integer)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8627 -> procedure OpenDrawerPressed(RoleID: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8644 -> procedure OpenDrawerPressedEx(RoleID: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8671 -> procedure OpenDrawer(RoleID: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8676 -> procedure OpenDrawerEx(RoleID: Code[10]; SuppressAlerts: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8684 -> procedure WaitDrawerClosed(RoleID: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8715 -> procedure WaitAllDrawersClosed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8731 -> procedure LogoffPressed(closePos: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8774 -> procedure CancelPressed(Hard: Boolean; Requested: Integer)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8921 -> procedure SuspendPressed(SaleType: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8954 -> procedure SuspendTransaction(POSTransaction: Record "LSC POS Transaction"; SalesType: Record "LSC Sales Type")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:8984 -> procedure SuspendTransWithNoSalesType(var SendPOSTransSuccess: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9009 -> procedure SuspendTransWithSalesType(SalesType: Record "LSC Sales Type"; var SendPOSTransSuccess: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9108 -> procedure RetSuspendedPressed(SaleType: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9130 -> procedure RetSuspendedPressedEx(pReceiptNo: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9224 -> internal procedure GetOrderPressed(SalesType: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9272 -> procedure ItemNoPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9306 -> procedure PluKeyPressed(PluNo: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9364 -> procedure MultiplyPressed(Value: Text[30])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9377 -> procedure MultiplyQty()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9408 -> procedure MultiplyMinusPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9437 -> procedure PurgePressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9451 -> procedure IncExpPressed(AccNo: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9478 -> procedure CouponPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9551 -> procedure RemoveTenderPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9579 -> procedure RemoveTenderPressedEx()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9591 -> procedure RunTDCommand()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9597 -> procedure TenderDeclPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9631 -> procedure TenderDeclPressedEx()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9686 -> procedure TrainingPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9708 -> procedure UnitOfMeasurePressed(Value: Text[30])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9731 -> procedure FormatAmount(Amount: Decimal): Text[30]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9736 -> procedure StartNewTransaction()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9804 -> procedure InsertTmpTransaction(NewLogin: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9904 -> internal procedure SetMemberInfoWhenPOSNotRunning(MemberCardNo: Text[100])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9919 -> procedure SetTransactionIsCancelCO()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9924 -> procedure ClearGlobs()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:9978 -> procedure InsertLogonLogoffTrans(LogAction: Option Logoff,Logon)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10010 -> procedure InitNewLine()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10032 -> procedure TestNewTransaction(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10039 -> procedure OkNewInput(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10080 -> procedure ProcessBarcode(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10245 -> internal procedure CheckItemPointOfferPopUp()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10255 -> procedure InputMSRCards()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10266 -> procedure CheckMSRcards(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10374 -> procedure VoidPostedTransaction(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10435 -> internal procedure ProcessRefundSelection(TmpCode: Code[30]; SkipInfocode: boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10529 -> local procedure InsertVoidPaymentLine(VoidCardEntry: Record "LSC POS Card Entry"; CardEntryNo: Integer)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10556 -> procedure VoidCard(VoidCardEntry: Record "LSC POS Card Entry"; var pCardEntryNo: Integer; var pErrorReason: Text): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10561 -> procedure WriteMgrStatus()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10580 -> procedure RefreshTrainingStatus()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10591 -> procedure PriceCheckPressed(Curr: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10607 -> procedure ValidatePriceCheck()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10809 -> local procedure GetPriceCheckInformationText(Price: Decimal; UOM: Code[10]; AddSellItemQuestion: Boolean): Text
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10823 -> procedure ValidatePriceCheckPhase2(var Price: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10846 -> procedure ReturnLastPriceCheck() Price: Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10851 -> procedure FindItemPrice(ItemNo: Code[20]; transDate: Date; transTime: Time; UOM: Code[10]; VariantCode: Code[10]; CurrencyCode: Code[10]; PriceGroupCode: Code[10]; SalesTypeCode: Code[20]; CustDiscGroup: Code[20]): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10860 -> procedure SetErrorCheck()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10866 -> procedure ErrorCheck()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10878 -> procedure NegAdjPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10898 -> procedure PhysInvPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10914 -> procedure TSCheckError(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10955 -> procedure TSSendUnsentTransactions()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:10980 -> procedure ProcessSalesPerson()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11034 -> procedure ValidateSalesPerson(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11090 -> procedure ProcessReceiptBarcode() Success: Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11112 -> procedure ClearPOSTransaction()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11142 -> procedure InfocodeTestOnClose(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11177 -> procedure CorrectStaffLogin()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11190 -> procedure LogInOutStaff(ActionInt: Integer)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11205 -> procedure OpenNumericKeyboard(Caption: Text; KeybType: Integer; DefaultValue: Text; TriggerNo: Integer)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11211 -> procedure AskForSerialNo()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11232 -> procedure ValidateSerialNo(var ErrorText: Text[250]): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11258 -> procedure AskForLotNo()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11280 -> procedure ValidateLotNo(var ErrorText: Text[250]): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11315 -> procedure InitPosActions()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11341 -> procedure CreateOrderPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11388 -> procedure PostInvoicePressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11485 -> procedure SelectCustPressed(pCustomerNo: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11528 -> local procedure SelectCustPressedEx(pCustNo: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11587 -> procedure ToAccountPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11592 -> procedure ViewCustomer(var MenuLine: Record "LSC POS Menu Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11610 -> procedure ViewCustomerEx(pCustomerNoInp: Text; OkPressed: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11646 -> procedure TenderCheckloyalty(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11695 -> procedure ContactPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11701 -> procedure ValidateContact()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11750 -> procedure MarkPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11812 -> local procedure CoLinesMarkHasChanged(): boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11840 -> procedure TextPressed(Text: Text[100])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11884 -> procedure TextLinkedPressed(Text: Text[100])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11960 -> procedure ToggleGuestPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:11981 -> procedure ConfirmOrderPressed(StartFromBeginning: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12017 -> procedure GetNextInQueuePressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12133 -> procedure DealPressed(DealCode: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12240 -> procedure ProcessDealPressed(FromSelQty: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12304 -> procedure InsertDealLines()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12368 -> procedure CheckOpenDeals()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12385 -> procedure VoidDeal()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12408 -> procedure DealSwap(VoidLine: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12468 -> procedure ProcessChangedDeal(POSMenuLineIn: Record "LSC POS Menu Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12490 -> procedure DealSwitchGroup(DealModTo: Code[20]; LineOnly: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12506 -> procedure DealAddExtra()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12554 -> procedure MealMenuInsertPressed(MealMenuCode: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12578 -> procedure UseTransaction(NewTrans: Code[20]; UpdDisp: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12653 -> procedure SplitBillPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12734 -> procedure MakeRepayTrans(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12805 -> procedure NewSalePressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12814 -> procedure ShowDrawerOpenWarning(DrawerRole: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12835 -> procedure VariantPressed(VariantParm: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12841 -> local procedure FindActiveOfferInStore(var OfferCode: Code[20]; var OfferType: Option Multibuy,"Mix&Match","Disc. Offer"; var TmpLine: Record "LSC POS Trans. Line") counter: Integer
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:12983 -> procedure TD_CommandPressed(EndOfDay: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13064 -> procedure TD_CommandPressedCallback(EndOfDay: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13143 -> procedure TD_TenderDeclEndOfDayPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13193 -> procedure TD_TenderDeclEndOfDayPressedEx()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13198 -> procedure TD_OpenDrawerPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13211 -> procedure TD_CancelPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13235 -> procedure TD_DuFloatEntry(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13275 -> procedure TD_MakeFloatEntry()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13288 -> procedure UpdateLineInfo()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13298 -> procedure AskForSuggestedQty(SuggestedQty: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13304 -> procedure ChangeUnitOfMeasurePressed(MenuLine: Record "LSC POS Menu Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13361 -> procedure ChangeUnitOfMeasurePressedEx(UOMCode: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13455 -> procedure PickUpWarning(TransHeader: Record "LSC Transaction Header")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13486 -> procedure UpdateInputDevicesState(var pFunctionSetup: Record "LSC POS Command"; pUsePostActions: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13518 -> procedure CommitPaymentLine()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13525 -> procedure CommitPaymentLine(var pCardEntry: Record "LSC POS Card Entry")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13566 -> procedure CommitPaymentLineEx()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13579 -> procedure SetPOSState(pState: Enum "LSC POS Transaction State")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13584 -> procedure GetPOSStateEnum(pState: Code[10]) PosTransactionStateEnum: Enum "LSC POS Transaction State";
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13596 -> procedure SetPOSState(pSTATE: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13616 -> procedure ScreenDisplay(pText: Text[250])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13621 -> procedure CloseForm()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13631 -> procedure CheckNextItemInQueue()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13700 -> procedure CheckDiscountOffers(var pPOSTransLine: Record "LSC POS Trans. Line"): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13705 -> procedure CheckDiscountOffersEx()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13735 -> procedure InfocodeRequestOnLine(Requested: Option AutoOnly,All,RequestOnly)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13786 -> procedure SetInputPrompt(var prompt: Text[30])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13792 -> procedure ValidateSerialLotInput()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13815 -> procedure POSInfo(MenuLine: Record "LSC POS Menu Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13831 -> procedure POSZoom(MenuLine: Record "LSC POS Menu Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13846 -> procedure PrepaymentAmountTendered(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13851 -> procedure VoidPrepaymentPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13867 -> procedure VoidPrepaymentLinePressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13900 -> procedure ChangePrepaymentLinePressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13929 -> procedure AddPrepaymentLinePressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13958 -> procedure AskForCustInvoiceNo()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:13967 -> procedure ValidateCustomerInvoiceNoInput()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14033 -> procedure PaymentIntoAccWithInvPressed(Tender: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14045 -> procedure BackDateTransCheck(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14063 -> procedure ItemDecimalQtyCheck(var pItemNo: Code[20]; var pQuantity: Decimal): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14090 -> procedure InsertMultipleItems(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14118 -> procedure ItemFinderPressed(SetupCode: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14124 -> procedure ProcessItemFinderResult()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14137 -> procedure CalcBalanceWithOutNoDiscAllowe(): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14161 -> procedure VoidCouponQtyUsed(var pPOSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14229 -> procedure GetLastTransNo(): Integer
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14234 -> procedure SetTrainingMode(TrainMode: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14240 -> procedure GetTrainingMode(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14245 -> procedure CleanupCustomer()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14264 -> procedure SelectDefaultMenu()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14269 -> procedure GetDefaultMenuSelectedFlag(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14278 -> internal procedure LookUp(ExecuteCommand: Boolean; FormID: Code[20]; "Filter": Code[29])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14289 -> procedure LookUpEx(ExecuteCommand: Boolean; FormID: Code[20]; "Filter": Code[29]; var LookupRecRef: RecordRef): Code[30]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14415 -> procedure BackSpace()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14421 -> procedure InitCommand()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14428 -> procedure IsNewTransaction(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14433 -> procedure SaleIsReturnSale(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14438 -> procedure SetProcessTenderOffers(newProcessTenderOffersValue: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14443 -> procedure GetStoreNo(): Code[10]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14448 -> procedure GetPOSTerminalNo(): Code[10]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14453 -> procedure GetReceiptNo(): Code[20]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14458 -> procedure GetSalesStaff(): Code[20]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14463 -> procedure GetDocumentNo(): Code[20]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14468 -> procedure GetCustomerNo(): Code[20]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14473 -> procedure GetDiscount(): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14478 -> procedure GetDiscountTxt(): Text[30]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14483 -> procedure GetAmount(): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14488 -> procedure GetAmountTxt(): Text[30]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14493 -> procedure GetPayment(): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14498 -> procedure GetPaymentTxt(): Text[30]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14503 -> procedure GetOutstandingBalance(): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14512 -> procedure GetOutstandingBalanceTxt(): Text[30]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14517 -> procedure GetPrepaymentAmount(): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14522 -> procedure GetPrepaymentAmountTxt(): Text[30]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14527 -> procedure GetPrepaymentBalance(): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14532 -> procedure GetPrepaymentBalanceTxt(): Text[30]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14537 -> procedure GetTotalNetAmount(): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14542 -> procedure GetTotalNetAmountTxt(): Text[30]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14547 -> procedure GetSalesTax(): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14552 -> procedure GetSalesTaxTxt(): Text[30]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14557 -> procedure GetShiftNo(): Code[1]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14562 -> procedure GetStaffID(): Code[20]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14567 -> procedure GetManagerID(): Code[20]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14572 -> procedure GetManagerKey(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14577 -> procedure GetSalesType(): Code[20]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14582 -> procedure GetMenuType(): Code[20]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14592 -> procedure GetMenuTypeDescription(): Text[30]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14602 -> procedure GetGuests(): Integer
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14608 -> procedure GetCovers(): Integer
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14613 -> procedure GetTableDescr(): Text
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14618 -> procedure GetComment(): Text
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14623 -> procedure GetPosState(): Code[10]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14628 -> procedure GetPosInfoText1(): Text
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14633 -> procedure AvailabilityModeOn(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14638 -> procedure SetPosInfoText1(pText: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14643 -> procedure GetPosInfoText2(): Text
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14648 -> procedure SetPosInfoText2(pText: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14653 -> procedure GetInputPrompt(): Text[30]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14658 -> procedure SetUnitOfMeasure(UnitOfMeasure: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14663 -> procedure SetCurrInput(var pCurrInput: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14668 -> procedure GetCurrInput(): Text
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14673 -> procedure AppendInput(pText: Text[30])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14678 -> procedure ClearInput()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14683 -> procedure SetLastItemNo(pItemNo: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14688 -> procedure SetInfoFunction(NewInfoFunction: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14693 -> procedure SetStartFunction(NewStartFunction: code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14698 -> procedure SetTransNo(var TransNoIn: Integer)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14704 -> procedure ClearPluCheckPriceAndVariant()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14710 -> procedure ProcessScannerInput(var pScanInput: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14779 -> procedure ProcessMSRInput(var pMSRInput: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14799 -> procedure GetClosePosFlag() retval: Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14805 -> procedure GetNewLineNo(): Integer
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14810 -> procedure GetSelectLineNoBeforePLUKEYPressed(): Integer
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14815 -> procedure GetGlobalSalesType(): Code[20]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14820 -> procedure SetGlobalSalesType()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14827 -> procedure ProcessFuelMessage() retval: Integer
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14832 -> procedure GetContactID(): Code[20]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14837 -> procedure GetStateTxt(): Code[30]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14842 -> procedure GetStateTxt2(): Text[30]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14847 -> procedure VoidSuspendedTrans(pReceiptNo: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:14892 -> procedure ZReportSuspendProcess(var NoSuspPOSTransactionsVoided: Integer): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15031 -> procedure CheckIfZReportPrinted()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15115 -> procedure GetLastItemNo(): Code[20]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15120 -> procedure ClearLastItemNo()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15125 -> internal Procedure AfterGetRecord()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15132 -> procedure ViewVoucherEntries(Parameter: Text[50])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15158 -> procedure AskForDataEntryNo()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15168 -> procedure ValidateDataEntryInput()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15242 -> procedure ViewDataEntryBalance(Parameter: Text[50])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15255 -> procedure ChangeBackAmount(): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15260 -> procedure ChangeBackAmoungFCY(): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15265 -> procedure RefundLinePressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15276 -> procedure AddSalesPerson(Header: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15352 -> procedure FindIncExpFixedAmount(pAccountNo: Code[20]): Text[30]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15368 -> procedure FlagWaitDrawerClose()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15373 -> procedure ChangeSalesType(SalesTypeIn: Code[20]; Command: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15383 -> procedure ChangeSalesType(SalesTypeIn: Code[20]; PosCommand: Enum "LSC POS Command")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15492 -> procedure IssueCouponPressed(IssueCouponCode: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15529 -> procedure InsertCouponLine(CouponBarcode: Code[22]; CouponHeader: Record "LSC Coupon Header"; IssueOrUse: Integer; AutomaticallyCreated: Boolean; DiscountType: Integer; DiscountValue: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15571 -> procedure IsUOMPopUp(pItem: Record Item; var AllExcluded: Boolean): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15594 -> procedure UOMPopUp(POSTransLine: Record "LSC POS Trans. Line"): Code[10]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15607 -> procedure ProcessCoupon(var ErrorMsg: Text[250]; ScannedCouponCode: Code[22]; pLineRec: Record "LSC POS Trans. Line"): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15751 -> procedure LineDiscOffer(Parameter: Text[50]): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15792 -> procedure ProcessAddBenefits(lFunctionMode: Enum "LSC POS Command")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15811 -> procedure ProcessAddBenefitsEx(var TransBenefitCollectBuffer: Record "LSC Trans. Disc. Benefit Entry" temporary)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15886 -> procedure ProcessTenderOfferAtTotal(pTenderTypeCode: Code[10]): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15927 -> procedure ProcessTenderOfferAtTotalOnClose(var PosTransTenderTemp: Record "LSC POS Trans. Line" temporary): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15951 -> internal procedure CurrencyTenderOfferAtTotalOnClose(PosTransTenderTemp: Record "LSC POS Trans. Line" temporary)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:15958 -> procedure TenderCharge(pStoreNo: Code[10]; var pTenderType: Record "LSC Tender Type"; pCurrentInput: Text; var pTmp: Record "LSC Report Temp Table" temporary; pCardType: Code[10]): Integer
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16106 -> procedure RemoveCouponDiscount(var POSTransLine: Record "LSC POS Trans. Line"): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16209 -> procedure GetNewBalanceTenderOffer(pTenderTypeCode: Code[10]): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16242 -> procedure ShowDiscInfo()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16252 -> procedure ProcessItemPointOffer(ManualPushed: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16290 -> procedure ProcessItemPointOfferOnClosePanel(var TmpSelectedItemPointLine: Record "LSC Periodic Discount Line" temporary; var pCurrLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16305 -> procedure GetSeatingCapacity(): Integer
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16310 -> procedure InputMemberCard(CardNo: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16353 -> procedure UpdatedCOWithDeliveryDate(RequestedDeliveryDate: Date)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16365 -> procedure GetNetAmount(): Text[50]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16370 -> procedure GetTaxAmount(): Text[50]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16375 -> procedure GetCustomerName(): Text[100]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16384 -> procedure GetCustomerAddress(): Text[100]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16392 -> procedure GetCustomerAddress2(): Text[50]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16400 -> procedure GetCustomerPostCode(): Text[50]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16408 -> procedure GetCustomerBalance(): Text[50]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16425 -> procedure GetCustomerLastSale(): Text[50]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16447 -> procedure GetCustomerNo_Caption(): Text[50]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16457 -> procedure GetCustomerName_Caption(): Text[50]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16467 -> procedure GetCustomerAddress_Caption(): Text[50]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16477 -> procedure GetCustomerAddress2_Caption(): Text[50]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16487 -> procedure GetCustomerPostCode_Caption(): Text[50]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16497 -> procedure GetCustomerBalance_Caption(): Text[50]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16507 -> procedure GetCustomerLastSale_Caption(): Text[50]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16517 -> procedure CheckMemberCard(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16589 -> procedure SetInfoPhase(NewInfoPhase: Integer)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16594 -> procedure NextInfoPhase()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16648 -> procedure ValidateInfo(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16704 -> procedure CouponResetReservation(POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16734 -> procedure CheckCreditCardHold()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16744 -> procedure InventoryLookupPressed()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16825 -> procedure UpdateContext()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16839 -> local procedure UpdateGlobalContext()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16855 -> local procedure UpdateRecContext()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16912 -> local procedure UpdateMemberContext()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16918 -> local procedure UpdateCustomerContext()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16936 -> local procedure AddTagExpressions(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:16960 -> procedure AddUserCreatedTags()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17007 -> procedure ProcessScannerDataInput()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17053 -> procedure LoadQRTextData(pQRCode: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17058 -> procedure QueueMobileLoyaltyQRCode(var pErrorMessage: Text): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17063 -> procedure RefundLookUp(TransactionHeader: Record "LSC Transaction Header"; pNewReceiptNo: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17088 -> procedure SetCurrentLine(var NewRec: Record "LSC POS Trans. Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17093 -> procedure SetCurrentLineNo(pLineNo: Integer)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17107 -> procedure EditMemberContact()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17129 -> procedure EditMemberContactOK(pCloseCommand: Text; pMemberCardNo: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17149 -> procedure AddMemberEmail()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17164 -> procedure PrintYReport(DoCheck: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17225 -> procedure PreventNormalSaleCheck(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17238 -> procedure CheckTSStatus()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17257 -> procedure RetailCharge()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17272 -> procedure DisplayTotals()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17283 -> procedure CheckBillPrinted(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17302 -> local procedure CheckVoidLineAndKDS(var DisplayErrorText: text): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17322 -> local procedure CheckVoidTransAndKDS(var AlreadyConfirmed: Boolean): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17345 -> procedure GetStoreSetup()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17350 -> procedure LocationProfileEmail()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17361 -> local procedure LocationProfileEmailOnClose(pEmail: Text; pPayload: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17432 -> procedure LocationProfileSMS()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17493 -> local procedure LocationProfileSMSOnClose(pSMS: Text; pPayload: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17527 -> procedure ProcessHospDataInput()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17637 -> procedure ProcessHospDataRecipe(pEntryID: Code[20]; RecipeLine: Record "LSC POS Trans. Line"; GroupLineNo: Integer; DealLineNo: Integer)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17781 -> procedure QueueHospLoyalty(var pErrorMessage: Text): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17786 -> procedure SetSelQtyDealMod(pDealModItem: Record "LSC Deal Modifier Item"; pQty: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17811 -> procedure SetSelQtyItemMod(InfoSubcode: Record "LSC Information Subcode"; pQty: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17845 -> procedure ReOrderMenuType(MenuType_p: Code[1])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17872 -> procedure ReOrderQty(Parameter_p: Text[100])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17922 -> procedure CustomerOrderList()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17945 -> procedure CustomerOrderListAfterPosting()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:17952 -> procedure CustomerOrder(pParam: Text[100])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18026 -> internal procedure CustomerOrderCreate()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18054 -> procedure QueueCOQRCode(var pErrorMessage: Text): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18059 -> procedure GetCODataFromQR(var pDocStatus: Option "To Pick","To Collect"; var pDocumentId: Code[40]): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18064 -> procedure GetCODataFromBarcode(var pDocStatus: Option "To Pick","To Collect"; var pDocumentId: Code[40]): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18075 -> procedure ProcessCODataInput()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18094 -> procedure ProcessSPGDataInput()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18105 -> procedure QueueSPGQRCode(var pErrorMessage: Text): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18110 -> procedure GetSPGDataFromQR(var pDocumentId: Code[20]): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18115 -> procedure LoadPosTrans(pReceiptNo: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18120 -> procedure LoadPosTrans(pReceiptNo: Code[20]; suppressError: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18131 -> procedure WebReplication(pParam: Text[100])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18148 -> procedure SetHardwareProfile(ProfileID: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18158 -> procedure FBPStatus(POSMenuLine: Record "LSC POS Menu Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18165 -> procedure ShowMemberCouponList(POSMenuLine: Record "LSC POS Menu Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18172 -> local procedure CopyPostedTransaction()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18218 -> local procedure VoidAndCopyTransaction()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18369 -> procedure CopyTransaction(var Transaction: Record "LSC Transaction Header")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18419 -> local procedure InitCRTransaction(var Transaction: Record "LSC Transaction Header"; pNewReceiptNo: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18479 -> local procedure PrepareCRTrans(var pTrans: Record "LSC Transaction Header"; var pPosTrans: Record "LSC POS Transaction"; var pPosTransLineBuffer: Record "LSC POS Trans. Line" temporary; var pPosTransPeriodicDiscBuffer: Record "LSC POS Trans. Per. Disc. Type" temporary; var pDealPosTransLineBuffer: Record "LSC POS Trans. Line" temporary; Multiplier: Integer)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18682 -> local procedure CreateCRLines(var pSelectionBuffer: Record "LSC POS Trans. Line" temporary; var pTrans: Record "LSC Transaction Header"; var pPosTransLineBuffer: Record "LSC POS Trans. Line" temporary; var pPosTransPeriodicDiscBuffer: Record "LSC POS Trans. Per. Disc. Type" temporary; var pDealPosTransLineBuffer: Record "LSC POS Trans. Line" temporary; Multiplier: Integer): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:18984 -> local procedure CopyTransSalesperson(var pTrans: Record "LSC Transaction Header"; var pPosTrans: Record "LSC POS Transaction")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19007 -> local procedure ValidateCRLines(var pPosTransLineBuffer: Record "LSC POS Trans. Line" temporary; var pDealPosTransLineBuffer: Record "LSC POS Trans. Line" temporary; var pSelectionBuffer: Record "LSC POS Trans. Line" temporary; var pMessageText: Text[250]; var pErrorText: Text[250]): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19047 -> local procedure ValidateReturnPolicy(var pPosTransLineTmp: Record "LSC POS Trans. Line" temporary; var pMessageText: Text[250]; var pErrorText: Text[250]): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19071 -> local procedure RefreshRetailMessageTagText()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19077 -> local procedure OnIdle_RefreshRetailMessageTagText()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19083 -> local procedure EmailReceiptFromTrans(TmpTrans: Record "LSC Transaction Header" temporary; Invoice: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19110 -> local procedure EmailReceiptFromTransOnClose(pEmail: Text; pPayload: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19149 -> local procedure EmailSlipCopy()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19163 -> local procedure EmailLastSlipCopy()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19171 -> local procedure EmailInvoiceCopy()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19185 -> local procedure EmailLastInvoiceCopy()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19193 -> local procedure EFTCheckLastTrans(pForce: Boolean): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19240 -> local procedure CallKDSRoutingForCopiedLine(var NewLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19274 -> procedure IsInfocodeAllowMSR(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19279 -> procedure UpdateVoucherEntries(pLineRec: Record "LSC POS Trans. Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19311 -> local procedure ReturnRestrictions(var Qty: Decimal; var POSTransLine: Record "LSC POS Trans. Line"; FilterOnLineNo: Boolean; var LinesFound: Boolean): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19338 -> procedure ProcessLookupResult(LookupIDAndFilter: Text): Code[60]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19559 -> procedure ProcessNumpadResult(Payload: Text; InputValue: Text; ResultOK: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19876 -> procedure ProcessKeyboardResult(Payload: Text; InputValue: Text; ResultOK: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19970 -> procedure ProcessCalendarResult(Payload: Text; InputValue: DateTime; ResultOK: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:19982 -> procedure ProcessInfocodeResult(PopupMenuLine: Record "LSC POS Menu Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20003 -> procedure GetGlobalMenuLine(var GlobalMenuLineOut: Record "LSC POS Menu Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20008 -> procedure GetNewLine(var NewLineOut: Record "LSC POS Trans. Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20013 -> local procedure GetRecommendation(POSMenuLine: Record "LSC POS Menu Line"; onTotal: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20030 -> local procedure FindLineNoForExpDateOffer(var PeriodicDiscountLine: Record "LSC Periodic Discount Line"; var POSTransLineTEMP: Record "LSC POS Trans. Line" temporary) LineNo: Integer
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20050 -> local procedure CheckGS1DataBarItemAction(ItemNo: Code[20]; LotNo: Code[50]; ExpirationDate: Date): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20131 -> local procedure FindItemUOMForKgOrLbs(ItemNo: Code[20]; ItemDescription: Text; LookForKgOrLbs: Option Kg,Lbs; var ErrMsg: Text[250]) ItemUOM: Code[10]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20151 -> procedure LoginEx()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20156 -> procedure LoginExPost()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20161 -> procedure KeyLockChanged()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20166 -> procedure KeyLockChangedPost()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20171 -> procedure OnTimer()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20176 -> procedure StaffLogon(var Staff: Record "LSC Staff")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20181 -> procedure StaffLogonPost(var Staff: Record "LSC Staff")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20186 -> procedure CustomerOrderPostShipOrder(DocId: Code[20]; var CustomerOrderLines_Temp: Record "LSC Customer Order Line" temporary)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20217 -> procedure CustomerOrderPostWebShipOrder()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20231 -> procedure CustomerOrderPostTransaction(DocId: Code[20]; var CustomerOrderLines_Temp: Record "LSC Customer Order Line" temporary)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20251 -> procedure ClearInfoAndInfoUtil()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20257 -> local procedure MemberPointPaymentInTrans(var pPOSTransLine: Record "LSC POS Trans. Line"): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20278 -> local procedure CheckIfSalesLine(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20290 -> local procedure SetCustomerOrderInfo(CloseCommand: Code[20]; var COHeaderForPosTransTemp: Record "LSC Customer Order Header" temporary; var COPaymentForPosTransTemp: Record "LSC Customer Order Payment" temporary)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20322 -> internal procedure SetCustomerOrderForEdit(CloseCommand: Code[20]; var COHeaderForPosTransTemp: Record "LSC Customer Order Header" temporary; var COPaymentForPosTransTemp: Record "LSC Customer Order Payment" temporary)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20353 -> procedure SetVendorSourcing(VendorSourcing_p: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20358 -> local procedure InitDisplay()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20363 -> local procedure InitDisplay(RoleID: Code[10]; SubRoleID: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20372 -> local procedure InitDrawer()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20377 -> local procedure InitDrawer(RoleID: Code[10]; SubRoleID: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20386 -> procedure SetPOSTransaction(PosTransIn: Record "LSC POS Transaction")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20391 -> procedure GetPOSTransaction(var PosTransOut: Record "LSC POS Transaction")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20396 -> procedure SetNewLine(NewLineIn: Record "LSC POS Trans. Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20401 -> procedure SetAmtAndBalance(AmountInCurrencyIn: Decimal; PaymentAmountIn: Decimal; BalanceIn: Decimal);
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20408 -> procedure GetAmtAndBalance(var AmountInCurrencyOut: Decimal; var PaymentAmountOut: Decimal; var BalanceOut: Decimal);
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20415 -> procedure SetInfoTextDescription(InfoTextDescIn: text; InfoTextDesc2In: text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20421 -> procedure GetInfoTextDescription(var InfoTextDescOut: text; var InfoTextDesc2Out: text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20427 -> procedure SetSkipActionsInTotDiscAmPressed(SkipActionsInTotDiscAmPressedIn: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20432 -> procedure GetSkipActionsInTotDiscAmPressed(var SkipActionsInTotDiscAmPressedOut: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20437 -> procedure IsPosActionTriggerActive(ActionTriggerNo: Integer): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20445 -> procedure CheckInfocodeOnNewLine(var PosTransLine: Record "LSC POS Trans. Line"; module: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20452 -> local procedure OnCustomerOrderCreated(var DataBuffer: Record "LSC Customer Order Header" temporary; var DataLinesBuffer: Record "LSC Customer Order Line" temporary; var DataDiscountLineBuffer: Record "LSC CO Discount Line" temporary)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20619 -> local procedure OnCustomerOrderListClosed(CloseCommand: Code[20]; var COHeaderForPosTransTemp: Record "LSC Customer Order Header" temporary; var COPaymentForPosTransTemp: Record "LSC Customer Order Payment" temporary)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20645 -> local procedure OnCustomerOrderDeposit(var CustomerOrderHeader: Record "LSC Customer Order Header" temporary; RemainingAmount: Decimal; CloseCommand: Code[20])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20659 -> local procedure CustomerOrderAddDeposit(payload: Text; inputValue: Text; resultOK: Boolean; var processed: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20682 -> local procedure ProcessMyLookup(LookupID: Text; FilterText: Text; resultOK: Boolean; var processed: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20692 -> local procedure ProcessLookupResult(LookupID: Text; FilterText: Text; ResultOK: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20710 -> internal procedure DepositCustomerOrderPayment(inputValue: Text)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20747 -> procedure OverridePLBItem()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20791 -> procedure UpdateRestrictedFlag()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20809 -> procedure GetPLBFlag(PaymentAmount: Decimal): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20851 -> procedure CDCCardPayment(var CardEntry: Record "LSC POS Card Entry"): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20862 -> procedure GetMerchantoverrideFlag(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20867 -> procedure GetChangeTender(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20872 -> procedure SetLineRec(NewLineRec: Record "LSC POS Trans. Line")
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20877 -> procedure GetLineRec(): Record "LSC POS Trans. Line"
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20882 -> procedure ClearOverridePLBItem()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20894 -> local procedure CheckVATSetups(POSTransaction: Record "LSC POS Transaction"; Item: Record Item)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20911 -> local procedure WebPreAuthNotAuthorizedFunc(ShipOrder: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20952 -> local procedure CheckStartPOSActions(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:20961 -> local procedure CheckForExchangeLineInTrans(ReceiptNo: Code[20]; var PaymentAmount: Decimal; var DoNotUseExchangeLineAsPayToCO: Boolean): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21012 -> local procedure TogglePrepayCustomerOrder()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21054 -> procedure GetTenderType(): Text[20]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21059 -> procedure SetEBTTenderType(TenderType: Code[10])
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21081 -> procedure GetLinePriceGroup(): Code[10]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21086 -> procedure GetLineSalesType(): Code[20]
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21091 -> procedure GetKeyboardPrice(): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21096 -> procedure GetMultiplyWith(): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21101 -> procedure SetMultiplyWith(NewMultiplyWith: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21107 -> procedure GetCurrQty(): Decimal
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21112 -> procedure SetCurrQty(NewCurrQty: Decimal)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21117 -> procedure GetPosSetup(): Record "LSC POS Hardware Profile";
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21122 -> internal procedure GetCOTemp(var COHeaderTemp: Record "LSC Customer Order Header" temporary; var COLineTemp: Record "LSC Customer Order Line" temporary; var CODiscountLineTemp: Record "LSC CO Discount Line" temporary; var COPaymentTemp: Record "LSC Customer Order Payment" temporary)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21129 -> procedure SetCOWasCreated(COCreated: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21134 -> internal procedure GetLineUpdateInProgress(): boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21139 -> procedure IsCustomerOrderEdit(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21144 -> local procedure AzureStorageUpdate()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21160 -> local procedure StartJobQueueUpdate()
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21176 -> internal procedure IsProcessReceiptBarcode(IfConditionNeeded: Boolean): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21196 -> internal procedure IsCollectingOrder(): boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21201 -> procedure IsCustomerOrderPrepaid(): Boolean
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21206 -> procedure SetAskConfirmation(AskConfirmationp: Boolean)
+src/codeunit/Cod60005.OPTPOSTransactionImpl.al:21211 -> Procedure Data(
+
+## src/codeunit/Cod60006.OPTPOSTransactionEvents.al
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:4 -> internal procedure OnBeforeTenderOp(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:9 -> internal procedure OnAfterRefundPressed(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:14 -> internal procedure OnBeforeTotDiscPr(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:19 -> internal procedure OnAfterTotDiscPr(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:24 -> internal procedure OnBeforeTotDiscAm(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:29 -> internal procedure OnAfterTotDiscAm(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:34 -> internal procedure OnBeforeChangePrice(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:39 -> internal procedure OnAfterChangePrice(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:44 -> internal procedure OnBeforeTotalExecuted(var POSTransaction: Record "LSC POS Transaction"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:49 -> internal procedure OnAfterTotalExecuted(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:54 -> internal procedure OnBeforeChangeQty(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:59 -> internal procedure OnAfterChangeQty(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:64 -> internal procedure OnAfterDiscAmDiscountLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:69 -> internal procedure OnAfterDiscAmNegativeDiscountLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:74 -> internal procedure OnAfterDiscPrDiscountLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:79 -> internal procedure OnAfterDiscPrNegativeDiscountLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:84 -> internal procedure OnBeforePostPOSTransaction(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:89 -> internal procedure OnAfterPostPOSTransaction(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:94 -> internal procedure OnAfterVoidPressed(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:99 -> internal procedure OnAfterVoidPressedExecuted(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:104 -> internal procedure OnBeforeVoidLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var Handled: Boolean; var HandledErrorText: Text; var ReturnValue: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:109 -> internal procedure OnAfterVoidLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:114 -> internal procedure OnBeforeMessageBeep(var POSTransaction: Record "LSC POS Transaction"; Message: Text; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:119 -> internal procedure OnBeforeErrorBeep(var POSTransaction: Record "LSC POS Transaction"; Message: Text; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:124 -> internal procedure OnBeforePosMessage(var POSTransaction: Record "LSC POS Transaction"; Message: Text; var IsHandled: Boolean; var ReturnValue: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:129 -> internal procedure OnBeforePosConfirm(var POSTransaction: Record "LSC POS Transaction"; Message: Text; var IsHandled: Boolean; var ReturnValue: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:134 -> internal procedure OnBeforeVoidPrepaymentLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:139 -> internal procedure OnAfterVoidPrepaymentLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:144 -> internal procedure OnBeforeVoidPrepayment(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:149 -> internal procedure OnAfterVoidPrepayment(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:154 -> internal procedure OnAfterCommitPaymentLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; TenderType: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:159 -> internal procedure OnAfterCustomerPressed(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:164 -> internal procedure OnBeforeSetCustomer(var POSTransaction: Record "LSC POS Transaction"; var pCustomerNo: Code[20])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:169 -> internal procedure OnAfterValidateCustomerTender(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var CustomerOrCardNo: Code[20])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:174 -> internal procedure OnAfterValidateCustomerLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var CustomerOrCardNo: Code[20])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:179 -> internal procedure OnBeforeItemLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; Balance: Decimal; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:184 -> internal procedure OnBeforeInsertItemLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var CompressEntry: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:189 -> internal procedure OnAfterInsertItemLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:194 -> internal procedure OnBeforeInsertPaymentLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var TenderTypeCode: Code[10]; Balance: decimal; PaymentAmount: Decimal; STATE: Code[10]; var isHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:199 -> internal procedure OnBeforeRunCommand(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var POSMenuLine: Record "LSC POS Menu Line"; var isHandled: Boolean; TenderType: Record "LSC Tender Type"; var CusomterOrCardNo: Code[20])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:204 -> internal procedure OnAfterRunCommand(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var Command: Code[20]; var POSMenuLine: Record "LSC POS Menu Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:209 -> internal procedure OnBeforeOpenDrawer(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:214 -> internal procedure OnAfterWaitDrawerClosed(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:219 -> internal procedure OnBeforeSuspend(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:224 -> internal procedure OnAfterSuspend(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:229 -> internal procedure OnAfterSuspendInsertNewTransaction(var NewPOSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:234 -> internal procedure OnBeforeRetSuspended(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:239 -> internal procedure OnAfterRetSuspended(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:244 -> internal procedure OnBeforeRemoveTender(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:249 -> internal procedure OnBeforeTenderDecl(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:254 -> internal procedure OnBeforeValidatePriceCheck(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:259 -> internal procedure OnAfterValidatePriceCheckPhase2(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var Price: Decimal; var ItemNo: Code[20]; var Ishandled: Boolean; var LinkedItemsActive: Boolean; var UOMSet: Code[10]; var PriceCheckUnitOfMeasure: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:264 -> internal procedure OnBeforeReturnPriceCheckInfoTxt(var Info: Text; Item: Record Item; Price: Decimal; UOM: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:269 -> internal procedure OnBeforeNegAdj(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:274 -> internal procedure OnAfterSelectCustomer(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:279 -> internal procedure OnAfterProcessRefundSelection(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:284 -> internal procedure OnBeforeInsertNewTransaction(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:289 -> internal procedure OnAfterInsertNewTransaction(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:294 -> internal procedure OnCalcPeriodicBeforeRecalc(POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:299 -> internal procedure OnAfterItemLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:304 -> internal procedure OnBeforeInit(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:309 -> internal procedure OnAfterInit(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:314 -> internal procedure OnBeforeCheckInfoCodeV2(var POSTransaction: Record "LSC POS Transaction"; var Infocode: Record "LSC Infocode"; Module: Code[10]; var IsHandled: Boolean; var ReturnValue: Boolean; var InfoUtil: Codeunit "LSC POS Infocode Utility")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:319 -> internal procedure OnAfterCheckInfoCode(var POSTransaction: Record "LSC POS Transaction"; var Infocode: Record "LSC Infocode"; var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:324 -> internal procedure OnBeforeProcessInfoCode(var POSTransaction: Record "LSC POS Transaction"; var Infocode: Record "LSC Infocode")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:329 -> internal procedure OnAfterProcessInfoCode(var POSTransaction: Record "LSC POS Transaction"; var Infocode: Record "LSC Infocode")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:334 -> internal procedure OnBeforeCardSlipsPrintingConfirmed(var POSTransaction: Record "LSC POS Transaction"; PrintReceiptWasConfirmed: Boolean; var ContinueWithCardSlipPrinting: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:342 -> internal procedure OnEFTGetXReportBeforePOSConfirm(var AskUser: Boolean; var IsHandled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:348 -> internal procedure OnEFTGetZReportBeforePOSConfirm(var AskUser: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:353 -> internal procedure OnBeforeEFTGetXReportPOSConfirm(var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:358 -> internal procedure OnBeforeEFTGetZReportPOSConfirm(var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:363 -> internal procedure OnBeforePrintXReport(var POSTransaction: Record "LSC POS Transaction"; var DoCheck: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:368 -> internal procedure OnAfterPrintXReport(var POSTransaction: Record "LSC POS Transaction"; DoCheck: Boolean; AskUser: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:373 -> internal procedure OnBeforePrintZReport(var POSTransaction: Record "LSC POS Transaction"; var DoCheck: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:378 -> internal procedure OnAfterPrintZReport(var POSTransaction: Record "LSC POS Transaction"; DoCheck: Boolean; AskUser: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:385 -> internal procedure OnAfterValidateItemLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var Proceed: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:390 -> internal procedure OnBeforeIncExpLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:395 -> internal procedure OnAfterIncExpLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:400 -> internal procedure OnBeforeAskForQuantity(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var Item: Record Item)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:405 -> internal procedure OnBeforeAskForWeight(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var Item: Record Item)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:410 -> internal procedure OnBeforeAskForCard(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var PaymentAmount: Decimal; var Proceed: Boolean; var TenderTypeCode: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:415 -> internal procedure OnAfterInsertPaymentLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var TenderTypeCode: Code[10]; var SkipCommit: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:420 -> internal procedure OnAfterTenderKeyPressed(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var TenderTypeCode: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:425 -> internal procedure OnAfterTenderKeyExecuted(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var TenderTypeCode: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:430 -> internal procedure OnAfterTenderKeyPressedEx(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var TenderTypeCode: Code[10]; var TenderAmountText: Text; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:435 -> internal procedure OnBeforeInsertPayment_TenderKeyExecutedEx(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var TenderTypeCode: Code[10]; var TenderAmountText: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:440 -> internal procedure OnAfterTenderKeyExecutedEx(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var TenderTypeCode: Code[10]; var TenderAmountText: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:445 -> internal procedure OnBeforeValidateCard(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var TenderTypeCode: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:450 -> internal procedure OnAfterValidateCard(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var TenderTypeCode: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:455 -> internal procedure OnBeforeValidateCustomer(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var CustomerOrCardNo: Code[20]; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:460 -> internal procedure OnBeforeVoidTransaction(var POSTransaction: Record "LSC POS Transaction"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:465 -> internal procedure OnAfterVoidTransaction(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:470 -> internal procedure OnBeforeLogoff(var POSTransaction: Record "LSC POS Transaction"; var SalesType: Record "LSC Sales Type"; var closePos: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:475 -> internal procedure OnAfterLogoff(var POSTransaction: Record "LSC POS Transaction"; var SalesType: Record "LSC Sales Type"; var closePos: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:480 -> internal procedure OnBeforeCancel(var POSTransaction: Record "LSC POS Transaction"; var CurrInput: Text; var Hard: boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:485 -> internal procedure OnBeforePurge(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:490 -> internal procedure OnBeforeProcessBarcode(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:495 -> internal procedure OnProcessBarcode(var POSTransaction: Record "LSC POS Transaction"; var BarcodeMask: Record "LSC Barcode Mask"; var CurrInput: Text; var Proceed: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:500 -> internal procedure OnAfterProcessBarcode(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:505 -> internal procedure OnBeforeChangeUnitOfMeasure(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:510 -> internal procedure OnAfterChangeUnitOfMeasure(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:515 -> internal procedure OnBeforeCloseForm(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:520 -> internal procedure OnBeforeGetContext(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:525 -> internal procedure OnAfterGetContext(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:530 -> internal procedure OnBeforeLogin(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:535 -> internal procedure OnAfterLogin(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:540 -> internal procedure OnBeforeKeyLockChanged(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:545 -> internal procedure OnAfterKeyLockChanged(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:550 -> internal procedure OnBeforeOnTimer(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:555 -> internal procedure OnBeforeStaffLogon(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var Staff: Record "LSC Staff")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:560 -> internal procedure OnAfterStaffLogon(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var Staff: Record "LSC Staff")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:565 -> internal procedure OnAfterValidateCustomer(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var CustomerOrCardNo: Code[20])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:570 -> internal procedure OnAfterValidateIncExpLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var Proceed: Boolean; var IncExpAccount: Record "LSC Income/Expense Account")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:575 -> internal procedure OnAfterValidateChangeQty(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var Proceed: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:580 -> internal procedure OnBeforeValidateChangePrice(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var Proceed: Boolean; var ErrorText: Text[250])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:585 -> internal procedure OnAfterValidateChangePrice(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var Proceed: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:590 -> internal procedure OnAfterOpenDrawerPressed(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var RoleID: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:595 -> internal procedure ItemLineOnAfterItemGet(var POSTransLine: Record "LSC POS Trans. Line"; var Proceed: Boolean; Item: Record Item; var LastItemNo: Code[20]; var CurrQty: Decimal; var MultiplyWith: Decimal; var WeightInKgsFromScannedDatabar: Decimal; REC: Record "LSC POS Transaction"; var ErrorText: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:600 -> internal procedure OnBeforeCheckMemberCard(var PosTransaction: Record "LSC POS Transaction"; var MemberAccountTemp: Record "LSC Member Account" temporary; var MemberContactTemp: Record "LSC Member Contact" temporary; var MembershipCardTemp: Record "LSC Membership Card" temporary; var Handled: boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:605 -> internal procedure OnAfterCheckMemberCardV2(var PosTransaction: Record "LSC POS Transaction"; var MemberAccountTemp: Record "LSC Member Account" temporary; var MemberContactTemp: Record "LSC Member Contact" temporary; var MembershipCardTemp: Record "LSC Membership Card" temporary)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:610 -> internal procedure OnInsertCouponLineBeforeInsertLine(var PosTransaction: Record "LSC POS Transaction"; var NewLine: Record "LSC Pos Trans. line"; CouponHeader: Record "LSC Coupon Header"; DiscountValue: Decimal; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:615 -> internal procedure OnAfterEFTResponseDataSet(var TempPostingExchField: Record "Data Exch. Field" temporary)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:620 -> internal procedure OnBeforeVoidCard(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; VoidCardEntry: Record "LSC POS Card Entry"; var CardEntryNo: Integer; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:625 -> internal procedure OnBeforeProcessTransForPostingByState(var POSTrans: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:630 -> internal procedure OnAfterProcessTransForPostingByState(var POSTrans: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:635 -> internal procedure OnVoidTransaction(var POSTrans: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:640 -> internal procedure OnBeforeVoidLinePressedEx(var POSTrans: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:645 -> internal procedure OnBeforeSelectCustPressedEx(var pCustNo: Code[20]; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:650 -> internal procedure OnBeforeVoidAndCopyTransaction(var Transaction: Record "LSC Transaction Header"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:655 -> internal procedure OnAfterValidateQuantity(var NewQuantity: Decimal; var Line: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:660 -> internal procedure OnAfterCalcTotals(var Rec: Record "LSC POS Transaction"; var Balance: Decimal; var RealBalance: Decimal)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:665 -> internal procedure OnAfterVoidPostedTransaction(var Rec: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:670 -> internal procedure OnBeforeOpenVariantLookup(var tmpValue: Decimal; var PosVariant: Record "Item Variant"; var ItemNo: Code[20])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:675 -> internal procedure OnAfterPreAuthPressed(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var TenderTypeCode: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:680 -> internal procedure OnAfterPreAuthExecuted(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var TenderTypeCode: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:685 -> internal procedure OnBeforeIsBlockSaleOnPOS(IsReturnSale: Boolean; Item: Record Item; var MultiplyWith: Decimal; var FixedQty: Decimal; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:690 -> internal procedure OnBeforeSelectCustPressed(var CustomerMandatory: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:695 -> internal procedure OnBeforeInsertCopiedTransLine(var newLine: Record "LSC POS Trans. Line"; var pPosTransLineBuffer: Record "LSC POS Trans. Line" temporary; var pSelectionBuffer: Record "LSC POS Trans. Line" temporary; var pTrans: Record "LSC Transaction Header")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:700 -> internal procedure OnBeforeInsertPosTransLineBuffer(var pPosTransLineBuffer: Record "LSC POS Trans. Line" temporary; var TransSalesEntry: Record "LSC Trans. Sales Entry")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:705 -> internal procedure OnAfterInsertCopiedTransLine(var newLine: Record "LSC POS Trans. Line"; var pPosTransLineBuffer: Record "LSC POS Trans. Line" temporary; var pSelectionBuffer: Record "LSC POS Trans. Line" temporary; var pTrans: Record "LSC Transaction Header")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:710 -> internal procedure OnStateChanged(var POSTransaction: Record "LSC POS Transaction"; fromState: Text; toState: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:715 -> internal procedure OnAfterFinalizePosting(var LastTransaction: Record "LSC Transaction Header"; POSTransPostingStateTmp: Record "LSC POS Trans. Posting State" temporary; StayInPOSOnPost: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:720 -> internal procedure ItemLineOnCheckRetrievedFromReceipt(POSTransaction: Record "LSC POS Transaction"; var newLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var IsHandled: Boolean; MultiplyWit: Decimal)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:725 -> internal procedure onAskForDataEntryNo()
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:730 -> internal procedure OnBeforeTransactionTendered(var POSTransaction: Record "LSC POS Transaction"; var TenderType: Record "LSC Tender Type"; var VoidInProcess: Boolean; var Balance: Decimal; var TmpAmount: Decimal; var RoundedValue: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:735 -> internal procedure OnValidateDataEntryInputExpirationDate(var DataEntryBalance: Decimal; var ExpirationDate: Date; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:740 -> internal procedure OnBeforeCopyTransaction(var Transaction: Record "LSC Transaction Header"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:745 -> internal procedure OnBeforeSetFunctionModeSalesPressed(POSFuncProfile: Record "LSC POS Func. Profile"; POSTransaction: Record "LSC POS Transaction"; Keyed: Boolean; var CurrInput: Text; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:750 -> internal procedure OnBeforeClearDiscOfferVoidLinePressed(PosFunc: Codeunit "LSC POS Functions"; var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:755 -> internal procedure OnBeforeProcessItemPointOfferOnClosePanel(var TmpSelectedItemPointLine: Record "LSC Periodic Discount Line" temporary; var pCurrLine: Record "LSC POS Trans. Line"; var NewLine: Record "LSC POS Trans. Line"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:760 -> internal procedure OnBeforeAskForPrice(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var Item: Record Item)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:765 -> internal procedure OnAfterAskForPrice(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var NewPOSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var Item: Record Item)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:770 -> internal procedure OnBeforePrintSlipCopy(var TransactionHeader: Record "LSC Transaction Header"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:775 -> internal procedure OnAfterPrintSlipCopy(var TransactionHeader: Record "LSC Transaction Header")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:780 -> internal procedure OnBeforeProcessCustomer(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:785 -> internal procedure OnBeforeOpenNumericKeyboard(var Caption: Text; var KeybType: Integer; var DefaultValue: Text; var TriggerNo: Integer)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:790 -> internal procedure OnBeforeEnterTenderTypeAmount(var PaymentAmount: Decimal; StoreNo: Code[10]; TenderTypeCode: Code[10]; Balance: Decimal)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:795 -> internal procedure OnBeforeShowDrawerOpenWarning(var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:800 -> internal procedure OnInfocodeDisplayNumpad(var Infocode: Record "LSC Infocode"; var Input: Text; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:805 -> internal procedure OnAfterValidatePriceCheck(var Description: Text; ItemDescription: Text; PriceCheckUnitOfMeasure: Code[10]; Qty: Decimal; PriceCheckPrice: Decimal)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:810 -> internal procedure OnValidatePriceCheckBeforeTransPerDiscDelete(TmpLine: Record "LSC POS Trans. Line"; TransPerDisc: Record "LSC POS Trans. Per. Disc. Type"; var InfoTextDescription1: Text; var InfoTextDescription2: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:816 -> internal procedure OnAfterAskForWeight2(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var Item: Record Item; var IsHandled: Boolean; var CurrQty: Decimal; var MultiplyWith: Decimal; var ScalePrice: Decimal)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:821 -> internal procedure OnBeforeValidateTenderInTenderKeyPressed(var ErrorTextIfNotProceed: Text; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:826 -> internal procedure OnVoidLine(var POSTransLine: Record "LSC POS Trans. Line"; var IsHandled: Boolean; var TenderType: Record "LSC Tender Type"; StoreSetup: Record "LSC Store"; var REC: Record "LSC POS Transaction"; var CardEntry: Record "LSC POS Card Entry"; var CustomerOrCardNo: Code[20]; var ReadFromMSR: Boolean; var ChangeTender: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:831 -> internal procedure OnAfterVoidMemberLineProcessed(var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:836 -> internal procedure OnTenderKeyPressedEx_OnBeforeCheckPrinterActive(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var TenderTypeCode: Code[10]; var TenderAmountText: Text; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:841 -> internal procedure OnInit_OnAfterGetPOSTransaction(var POSTransaction: Record "LSC POS Transaction"; CurrTableNo: Integer; CurrTableDescr: text; CurrDinResNo: code[20])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:846 -> internal procedure OnValidatePricePermissionItem(var POSTransLine: Record "LSC POS Trans. Line"; var Store: Record "LSC Store"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:851 -> internal procedure OnOkNewInput(FunctionSetup: Record "LSC POS Command"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:856 -> internal procedure OnGetOrderPressedAfterInfoTextDescription(var CurrInput: Text; var POSTransaction: Record "LSC POS Transaction"; var DocType: Enum "Sales Document Type"; var OrderNo: Code[20])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:861 -> internal procedure OnBeforeNewLineInsertTextLinkPressed(var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:866 -> internal procedure OnInfocodeDisplayAlphabeticPad(var Info: Record "LSC Infocode"; var CurrInput: Text; var DefaultValue: Text; var LineRec: Record "LSC POS Trans. Line"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:871 -> internal procedure OnPanelOKEditMemberContactOK(var POSTransaction: Record "LSC POS Transaction"; var MemberCardNo: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:876 -> internal procedure OnBeforeExitWhenResultNotOk(var Payload: Text; var InputValue: Text; var ResultOK: Boolean; var KeyboardTriggerToProcess: Integer; var IsHandled: Boolean; var Rec: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:881 -> internal procedure OnAfterOpenDrawerPressedEx(RoleId: Code[10]; TrainingActive: Boolean; var TransactionHdr: Record "LSC Transaction Header")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:886 -> internal procedure OnBeforeSetFunctionModeGetNextInQueuePressed(POSFuncProfile: Record "LSC POS Func. Profile"; POSTransaction: Record "LSC POS Transaction"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:891 -> internal procedure OnBeforeSetFunctionModeRefundPressed(POSFuncProfile: Record "LSC POS Func. Profile"; POSTransaction: Record "LSC POS Transaction"; Keyed: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:896 -> internal procedure OnBeforeSetFunctionModeUseTransaction(POSFuncProfile: Record "LSC POS Func. Profile"; POSTransaction: Record "LSC POS Transaction"; NewTrans: Code[20]; UpdDisp: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:901 -> internal procedure OnBeforeValidateSalesPerson(POSFuncProfile: Record "LSC POS Func. Profile"; POSTransaction: Record "LSC POS Transaction"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:906 -> internal procedure OnAfterValidateSalesPersonStaffStore(Staff: Record "LSC Staff")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:911 -> internal procedure OnBeforeProcessPostingByState2(var POSTransaction: Record "LSC POS Transaction"; var POSTransPostingStateTemp: Record "LSC POS Trans. Posting State" temporary; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:916 -> internal procedure OnBeforeSetFunctionModeInit(var PosFuncProfile: Record "LSC POS Func. Profile"; var POSTransaction: Record "LSC POS Transaction"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:921 -> internal procedure OnAfterProcessSalesPerson(POSFuncProfile: Record "LSC POS Func. Profile"; POSTransaction: Record "LSC POS Transaction"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:926 -> internal procedure OnBeforeSetTracking(var POSTrans: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var ItemPhase: Integer; var SerialTracking: Boolean; var LotTracking: Boolean; var SerialNo: Code[50]; var LotNo: Code[50]; var PreSetSerialLotNo: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:931 -> internal procedure SuspendTransWithSalesTypeOnBeforeDeleteRecord(var POSTrans: Record "LSC POS Transaction"; SalesType: Record "LSC Sales Type"; var SendPOSTransSuccess: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:936 -> internal procedure OnBeforeEFTCheckLastTrans(var pForce: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:941 -> internal procedure OnMakeRepayTransBeforePosConfirm(SalesType: Record "LSC Sales Type"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:946 -> internal procedure OnBeforeProcessCoupon(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var ScannedDatabar: Text[100]; var CouponCodeNextItem: Code[22]; var IsHandled: boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:951 -> internal procedure OnAfterDescriptionValidateVariant(PosFuncProfile: Record "LSC POS Func. Profile"; var POSTransLine: Record "LSC POS Trans. Line"; PosVariant: Record "Item Variant")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:956 -> internal procedure OnAfterValidateVariant(PosFuncProfile: Record "LSC POS Func. Profile"; POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:961 -> internal procedure OnBeforeValidateLotNo(NewLine: Record "LSC POS Trans. Line"; var IsHandled: Boolean; var ReturnValue: Boolean; SerialNo: Code[50]; LotNo: Code[50])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:966 -> internal procedure OnBeforeTDCommandPressed(var POSTransaction: Record "LSC POS Transaction"; EndOfDay: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:971 -> internal procedure OnBeforeMarkPressed(POSTransaction: Record "LSC POS Transaction"; POSTransLine: Record "LSC POS Trans. Line"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:976 -> internal procedure OnAfterProcessItemPhaseZero(Item: Record Item; var IsHandled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:981 -> internal procedure OnBeforeAskForSuggestedQtyItemPhase2v2(var SuggestedQty: Decimal; var PosTransLine: Record "LSC POS Trans. Line"; var MultiplyWith: Decimal; Item: Record Item)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:986 -> internal procedure OnInitInsertItemLine(PosTrans: Record "LSC POS Transaction"; PosTransLine: Record "LSC POS Trans. Line"; Customer: Record Customer; var IsHandled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:991 -> internal procedure OnBeforePrintLastSlipCopy(TransHeader: Record "LSC Transaction Header"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:996 -> internal procedure OnBeforeSuspendHospSalesTypeCheckReturnsError(POSTransaction: Record "LSC POS Transaction"; var IsHandled: Boolean; var ReturnValue: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1001 -> internal procedure OnBeforeSelectCustPressedViewCustomerEx(var CustomerMandatory: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1006 -> internal procedure OnAfterFloat(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1011 -> internal procedure OnAfterUpdateMemberContext(var POSTransaction: Record "LSC POS Transaction"; POSFunction: Codeunit "LSC POS Functions")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1016 -> internal procedure OnValidatePriceCheckOnBeforePerDiscLineFilterByType(var PeriodicDiscountLineRec: Record "LSC Periodic Discount Line"; var Step: Integer; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1021 -> internal procedure OnValidatePriceCheckOnBeforePerDiscLineFilterByNo(var PeriodicDiscountLineRec: Record "LSC Periodic Discount Line"; Item: Record Item; var Step: Integer; var LineFound: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1026 -> internal procedure OnFindActiveOfferInStoreOnBeforeAddQtyDiscV2(var PeriodicDiscountLines: Record "LSC Periodic Discount Line"; var PeriodicDiscount: Record "LSC Periodic Discount"; var TmpLine: Record "LSC POS Trans. Line"; var rboPriceUtil: Codeunit "LSC Retail Price Utils"; var found: Boolean; Store: Record "LSC Store"; Item: Record Item)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1031 -> internal procedure OnBeforeUnmarkSelectedLines(var POSTransaction: Record "LSC POS Transaction"; var SelectedPOSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1036 -> internal procedure OnBeforeProcessSelectedLines(var POSTransaction: Record "LSC POS Transaction"; var SelectedPOSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1041 -> internal procedure OnBeforevoidLinePressed(var POSTransaction: Record "LSC POS Transaction"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1046 -> internal procedure OnBeforeGetOrder(var LSCPosTransaction: Record "LSC POS Transaction"; DocType: Enum "Sales Document Type"; DocNumber: Code[20])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1051 -> internal procedure OnAfterGetRecord(var LSCPosTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1056 -> internal procedure OnBeforeAskForCustomer(var CardEntry: Record "LSC POS Card Entry"; var LSCPosTransaction: Record "LSC POS Transaction"; var PosTerminal: Record "LSC POS Terminal")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1061 -> internal procedure OnBeforeCheckScaleDevice(var LSCPosTransaction: Record "LSC POS Transaction"; var Item: Record Item; var LinePriceGroup: Code[10]; var LineSalesType: Code[20]; var IsHandled: boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1066 -> internal procedure OnAfterIsCouponValid(PosTransaction: Record "LSC POS Transaction"; POSTransLine: Record "LSC POS Trans. Line"; CouponHeader: Record "LSC Coupon Header"; var ErrorMsg: Text[250]; var IsHandled: Boolean; var ReturnValue: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1071 -> internal procedure OnBeforeUpdateGlobalMemberInformation(var PosTransaction: Record "LSC POS Transaction"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1076 -> internal procedure OnBeforeUpdatePosInfoTextsAndAfterPOSTransCommit(PosTransaction: Record "LSC POS Transaction"; var ContinueProcessing: Boolean; POSTransPostingStateTmp: Record "LSC POS Trans. Posting State" temporary)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1081 -> internal procedure OnBeforePrintSuspendSlip(var PosTransaction: Record "LSC POS Transaction"; var GrossAmount: Decimal; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1086 -> internal procedure OnBeforeAssigningSalesStaff(POSTransaction: Record "LSC POS Transaction"; PosFuncProfile: Record "LSC POS Func. Profile"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1091 -> internal procedure ClearPOSTransactionOnBeforeModify(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1096 -> internal procedure OnBeforeSuspendPrinting(SalesType: Record "LSC Sales Type"; var POSTransaction: Record "LSC POS Transaction"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1101 -> internal procedure OnSuspendNotConfirmedBeforeConfirm(var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1106 -> internal procedure OnBeforeExitProcessLookupResultKeyValueEmpty(LookupID: Text; var MenuLine: Record "LSC POS Menu Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1111 -> internal procedure OnAfterValidateItemNoInPhaseZero(POSTransaction: Record "LSC POS Transaction"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1116 -> internal procedure OnBeforeValidateTrackingOnTotal(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1121 -> internal procedure OnAfterViewCustomerEx(CustomerOk: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1126 -> internal procedure OnBeforeEmailOrPrintV2(POSHardwareProfile: Record "LSC POS Hardware Profile"; POSTerminal: Record "LSC POS Terminal"; LastTransaction: Record "LSC Transaction Header"; var POSTransPostingStateTmp: Record "LSC POS Trans. Posting State" temporary; var IsHandled: Boolean; var ReturnValue: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1131 -> internal procedure OnBeforeCustomerOrderPayment(var POSTransaction: Record "LSC POS Transaction"; POSTransLine: Record "LSC POS Trans. Line"; var CustomerOrderLine_Temp: Record "LSC Customer Order Line" temporary; var AddExtraPaymentToCO: Option; var CollectingOrder: Boolean; var VendorSourcing: Boolean; var PrepayCustomerOrder: Boolean; var InfoTextDescription: Text; var InfoTextDescription2: Text; var CORemainingAmount: Decimal; var ReturnValue: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1136 -> internal procedure OnAfterClearPOSTransaction(POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1141 -> internal procedure OnBeforeCheckTracking(var SerialTracking: Boolean; var LotTracking: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1146 -> internal procedure OnBeforeSetCOPaymentAmtOnTenderKeyPressedEx(var POSTransaction: Record "LSC POS Transaction"; var CustomerOrderHeader_Temp: Record "LSC Customer Order Header" temporary; var CustomerOrderLine_Temp: Record "LSC Customer Order Line" temporary; var PaymentAmount: Decimal; var PrepayCustomerOrder: Boolean; var COWasCreated: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1151 -> internal procedure COScanned(CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1156 -> internal procedure OnValidatePriceCheckOnAfterSetMaxNoOfSteps(var MaxNoOfSteps: Integer)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1161 -> internal procedure OnValidatePriceCheckOnAfterCalcDiscPrice(TmpLine: Record "LSC POS Trans. Line"; PosFuncProfile: Record "LSC POS Func. Profile"; DiscPct: Decimal; var TmpDiscPrice: Decimal)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1166 -> internal procedure OnBeforeSelectDefaultMenuInCancelPressed(var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1171 -> internal procedure OnBeforeExchangeLookup(var ExchangeTransaction: Record "LSC Transaction Header"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1176 -> internal procedure OnBeforeExchangeProcessLookupResult(var REC: Record "LSC POS Transaction"; var POSRefundMgt: Codeunit "LSC POS Refund Mgt."; var stateTxt: Code[30]; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1181 -> internal procedure OnBeforeTotDiscPrPressed(var POSTransaction: Record "LSC POS Transaction"; var Value: Text[30]; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1186 -> internal procedure OnBeforeTotalPressed(var POSTransaction: Record "LSC POS Transaction"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1191 -> internal procedure OnBeforeInsertTotalBenefitsLine(var POSTransaction: Record "LSC POS Transaction"; var TransBenefitCollectBuffer: Record "LSC Trans. Disc. Benefit Entry" temporary; var MultiplyWith: Decimal)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1196 -> internal procedure OnBeforeTotalCheckExchangeTransaction(var POSTransaction: Record "LSC POS Transaction"; var IsHandled: Boolean; var ReturnValue: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1201 -> internal procedure OnBeforeValidateCRLines(pPosTransLineBuffer: Record "LSC POS Trans. Line" temporary; var SkipThis: Boolean; var pErrorText: Text[250])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1206 -> internal procedure PosTransactionOnAfterVoidTransaction(var Line: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1211 -> internal procedure OnProcessSuspensionByState_SecErrorChecking(PosTransaction: Record "LSC POS Transaction"; var Cancel: Boolean; ErrorText: Text[250])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1216 -> internal procedure OnBeforeProcessScannerFunctionCode(FunctionSetup: Record "LSC POS Command"; var IsHandled: Boolean; var Found: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1221 -> internal procedure OnAfterValidateDisc(var LineRec: Record "LSC POS Trans. Line"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1226 -> internal procedure OnBeforeLookupCall(var LookupSetup: Record "LSC POS Lookup"; var PosTransLine: Record "LSC POS Trans. Line"; MgrKey: Boolean; CustomerNo: Code[20]; ExecuteCommand: Boolean; FormID: Code[20]; "Filter": Code[29]; var LookupRecRef: RecordRef; var IsHandled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1231 -> internal procedure OnBeforeGetLookupResult(LookupID: Text; var Command: Code[20]; var KeyValue: Code[30]; var Execute: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1236 -> internal procedure OnLookupResultVoidTR(var Command: Code[20]; var keyValue: Code[30]; var LookupRecID: RecordID; var IsHandled: Boolean; var IsExit: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1241 -> internal procedure OnLookupResultOtherCommand(var Command: Code[20]; var keyValue: Code[30]; var IsHandled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1246 -> internal procedure OnBeforeFindTenderTypeTable(POSTransaction: Record "LSC POS Transaction"; var TenderTypeTable: Record "LSC Tender Type Setup");
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1251 -> internal procedure OnAccNoCheckOnIncExpPressed(var AccNo: Code[20]; var IsHandled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1256 -> internal procedure OnBeforeMakeRepayTransModifyRec(var Rec: Record "LSC POS Transaction");
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1261 -> internal procedure OnBeforeNegAdjPressedStartNewTrans(var Rec: Record "LSC POS Transaction");
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1266 -> internal procedure OnAfterRecFound(var Rec: Record "LSC POS Transaction");
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1271 -> internal procedure OnBeforeMemberTender(var MemberContactTEMP: Record "LSC Member Contact" temporary; var TenderType: Record "LSC Tender Type"; var Rec: Record "LSC POS Transaction");
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1276 -> internal procedure OnBeforeRefundPressedStartNewTrans(var Rec: Record "LSC POS Transaction");
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1281 -> internal procedure OnBeforeSalePressedStartNewTrans(var Rec: Record "LSC POS Transaction");
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1286 -> internal procedure OnAfterSalePressedStartNewTrans(POSFuncProfile: Record "LSC POS Func. Profile"; var POSTransaction: Record "LSC POS Transaction"; Keyed: Boolean; var CurrInput: Text; var IsHandled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1291 -> internal procedure OnBeforeTotDiscAmPressed(var Value: Text[30]; var TotAmount: Boolean; var InfocodeCheck: Boolean; var IsHandled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1296 -> internal procedure OnBeforeProcess_CHSALESTYPE_TRANS(POSTransaction: Record "LSC POS Transaction"; var SalesTypeIn: Code[20]; var IsHandled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1301 -> internal procedure OnTotDiscPrPressed_OnAfterEvaluateInput(var LineRec: Record "LSC POS Trans. Line"; Dec: Decimal; var IsHandled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1306 -> internal procedure OnBeforeCheckPointBalance(var Rec: Record "LSC POS Transaction"; var LineRec: Record "LSC POS Trans. Line"; var CurrInput: Text; var IsHandled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1311 -> internal procedure OnBeforeAskConfirmationOnValidateCustomer(CustomerNo: code[20]; var CustConfirmOk: Boolean; var AskConfirmation: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1316 -> internal procedure OnBeforeFilterRecOnInit(var FilterFrom: Code[20]; var FilterTo: Code[20]);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1321 -> internal procedure OnBeforeKeyboardTriggerProcess(KeyboardTriggerToProcess: Integer; InputValue: Text; var NumPadTrigger: Enum "LSC POS Trans. Numpad Trigger");
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1326 -> internal procedure OnAfterSetQuantityAndPrice(var ItemQty: Decimal; var OrgPrice: Decimal);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1331 -> internal procedure OnAfterAdjustAmount(TenderType: Record "LSC Tender Type"; PosTransaction: Record "LSC POS Transaction"; var PaymentAmount: Decimal);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1336 -> internal procedure OnProcessLookupResult_KeyValueEmpty(var NewLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1341 -> internal procedure OnInit_OnBeforeTransDiscLoad(REC: Record "LSC POS Transaction"; STATE: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1346 -> internal procedure OnAfterUpdateInputDevicesState(pFunctionSetup: Record "LSC POS Command"; pUsePostActions: Boolean; REC: Record "LSC POS Transaction"; STATE: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1351 -> internal procedure OnProcessFuelMessage(var PosTransLine: Record "LSC POS Trans. Line"; var PosTransaction: Record "LSC POS Transaction"; var retval: Integer; var CurrInput: Text; var CommandRetVal: Boolean; var KeyboardPrice: Decimal; var OverridePrice: Decimal; var MultiplyWith: Decimal);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1356 -> internal procedure OnProcessOtherInfoTrigger(SubInfo: record "LSC Information Subcode"; Info: Record "LSC Infocode"; var POSTr: record "LSC POS Transaction"; POSTerminal: Record "LSC POS Terminal"; CurrInput: Text; var isHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1361 -> internal procedure OnBeforeIsProcessReceiptBarcode(var Handled: Boolean; CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1366 -> internal procedure OnBeforeEmailingInputOrPrint(var POSPrintUtility: Codeunit "LSC POS Print Utility"; LastTransaction: Record "LSC Transaction Header"; var Phase: Integer; var POSTransPostingStateTmp: Record "LSC POS Trans. Posting State"; POSHardwareProfile: Record "LSC POS Hardware Profile"; POSTerminal: Record "LSC POS Terminal"; var IsHandled: Boolean; var ReturnValue: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1371 -> internal procedure OnTotalPressed_OnBeforeCheckEmptyLine(var REC: Record "LSC POS Transaction"; var IsHandled: Boolean; var ReturnValue: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1376 -> internal procedure OnInit_OnAfterTenderDeclOpenOnADiffPOS(var IsHandled: Boolean; var ReturnValue: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1381 -> internal procedure OnAfterSetFunctionMode(var FunctionSetup: Record "LSC POS Command")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1386 -> internal procedure OnBeforeInsertLineInsertPaymentLine(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var TenderTypeCode: Code[10]; Balance: decimal; PaymentAmount: Decimal; STATE: Code[10]; var isHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1391 -> internal procedure OnBeforeUpdate_POSTrLine_CHSALESTYPE_TRANS(POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var SalesTypeIn: Code[20])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1396 -> internal procedure OnBeforeUpdate_DealHeaderPOSTrLine_CHSALESTYPE_TRANS(POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var SalesTypeIn: Code[20])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1401 -> internal procedure OnBeforeOpenCreatePanel(CustomerOrderLine_Temp: Record "LSC Customer Order Line" temporary; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1406 -> internal procedure OnBeforeChangeSalesType(var SalesTypeIn: Code[20]; var Command: Enum "LSC POS Command")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1411 -> internal procedure OnAfterPOSInit(POSTerminal: Record "LSC POS Terminal")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1416 -> internal procedure OnTenderKeyPressedEx_OnBeforeCheckRecStoreNo(var TenderType: Record "LSC Tender Type")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1421 -> internal procedure OnSelectTenderType(var TenderType: Record "LSC Tender Type"; var PaymentAmt: Decimal; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1426 -> internal procedure OnProcessCustomKeyboardTrigger(KeyboardTrigger: Integer; InputValue: Text; var CurrInput: Text; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1431 -> internal procedure OnBeforePOSCommandCaseProcessed(POSTrans: Record "LSC POS Transaction"; POSTransLine: Record "LSC POS Trans. Line"; CurrInput: Text; POSSESSION: Codeunit "LSC POS Session"; STATE: Enum "LSC POS Transaction State"; Command: Code[20]; var Processed: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1436 -> internal procedure OnBeforeAssignPaymentLine(TenderType: Record "LSC Tender Type"; var NewLine: Record "LSC POS Trans. Line"; REC: Record "LSC POS Transaction"; StoreSetup: Record "LSC Store"; MultiplyWith: Decimal; var LineRec: Record "LSC POS Trans. Line"; var InfoTextDescription: Text; var InfoTextDescription2: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1441 -> internal procedure OnAfterPOSCommandCaseProcessed(PosCommand: Enum "LSC POS Command"; MenuLine: Record "LSC POS Menu Line"; var TenderType: Record "LSC Tender Type"; StoreSetup: Record "LSC Store"; var Balance: Decimal; var REC: Record "LSC POS Transaction"; var Currency: Record Currency; var CardEntry: Record "LSC POS Card Entry"; var CustomerOrCardNo: Code[20]; var ReadFromMSR: Boolean; var ChangeTender: Boolean; var TrainingActive: Boolean; STATE: Enum "LSC POS Transaction State"; var PaymentAmount: Decimal; var PosFunc: Codeunit "LSC POS Functions"; var CurrInput: Text; var gInsertTmpPayment: Boolean; var Processed: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1446 -> internal procedure OnBeforeAssignTenderCardTypeDescription(var NewLine: Record "LSC POS Trans. Line"; CardEntry: Record "LSC POS Card Entry"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1451 -> internal procedure OnAfterPurge()
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1456 -> internal procedure OnAfterPurgeOldTransactions()
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1461 -> internal procedure OnBeforeCheckTransactionLines(ReceiptNo: Code[20])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1466 -> internal procedure OnBeforeCheckInfoCodeInputRequired(Info: Record "LSC Infocode"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1471 -> internal procedure OnBeforeProcessRefundSelection(REC: Record "LSC POS Transaction"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1476 -> internal procedure OnBeforeTestVoidCardEntryProcessRefundSelection(var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1481 -> internal procedure GXLOnZReportSuspendProcessOnAfterVoidSuspendedTrans(POSTransaction: Record "LSC POS Transaction"; TerminalNo: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1486 -> internal procedure OnBeforeSetWebPrintingOfEmailReceiptFromTransOnClose(var TmpTrans: Record "LSC Transaction Header" temporary; var PrintUtil: Codeunit "LSC POS Print Utility")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1491 -> internal procedure OnProcInfocodeBeforeDisplayCase(Info: Record "LSC Infocode"; Requested: Option AutoOnly,All,RequestOnly; InfocodeOnHeader: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1496 -> internal procedure OnBeforeProcessInfoCodeInValidateInfocode(Infocode: Record "LSC Infocode"; Requested: Option AutoOnly,All,RequestOnly; InfocodeOnHeader: Boolean; OneSubcode: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1501 -> internal procedure OnBeforeHandleSalesPersonMode(var REC: Record "LSC POS Transaction"; PosFuncProfile: Record "LSC POS Func. Profile"; PosCommand: Enum "LSC POS Command"; var IsHandled: boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1506 -> internal procedure OnAfterTransactionTendered(var RealBalance: Decimal; var InfoTextDescription2: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1511 -> internal procedure OnAfterTransactionTendered2(var IsHandled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1516 -> internal procedure OnBeforeCheckPermissionItemOnDiscAmPressed(LineRec: Record "LSC POS Trans. Line"; OldAmount: Decimal; AmDec: Decimal; var InfoTextDescription: Text; AmountToDisc: Decimal; var IsHandled: Boolean; var ExitProcedure: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1521 -> internal procedure OnBeforeCheckQuantityNegativeOnChangeQtyPressed(var Item: Record Item; LineRec: Record "LSC POS Trans. Line"; Dec: Decimal; var BOUtils: Codeunit "LSC BO Utils"; REC: Record "LSC POS Transaction"; StoreSetup: Record "LSC Store"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1526 -> internal procedure OnBeforeValidateInfocodeOnProcessInfoCodeInput(Requested: Integer; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1531 -> internal procedure OnBeforePostTransactionOnVoidTransaction(var PrintTransaction: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1536 -> internal procedure OnBeforeVoidingPaymentOnVoidSingleLine(var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1541 -> internal procedure OnAfterSerialNoIsValidCheck(var IsHandled: Boolean; var ErrorText: Text[250])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1546 -> internal procedure OnBeforeSettingPreAuthorizationAmount(POSCommand: Enum "LSC POS Command"; TransactionLine: Record "LSC POS Trans. Line"; CardEntry: Record "LSC POS Card Entry"; Balance: Decimal;
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1552 -> internal procedure OnBeforeSettingPreAuthFinalizationAmount(POSCommand: Enum "LSC POS Command"; CardEntry: Record "LSC POS Card Entry"; Balance: Decimal;
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1558 -> internal procedure OnBeforeStoreOrderLimitOnPostingOrOnSuspending(ReceiptNo: Code[20]; var OrderLimit: Decimal; OnPosting: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1563 -> internal procedure OnBeforeDealPressed(DealCode: Code[20]; var POSTransaction: Record "LSC POS Transaction"; var DealPOSTransLine: Record "LSC POS trans. Line"; var Deal: Record "LSC Offer"; var DealLinesTmp: Record "LSC Offer Line" temporary; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1568 -> internal procedure OnAfterInputMemberCard(var CardNo: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1573 -> internal procedure OnAfterAskForLotNo(var Rec: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1578 -> internal procedure OnBeforeProcessExternalCommand(var POSMenuLineIn: Record "LSC POS Menu Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1583 -> internal procedure OnBeforeCalculateItemInventory(var ItemInventory: Decimal; var ItemRec: Record Item; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1588 -> internal procedure OnBeforeOpenNumericKeyboardShippingCharge(var CustomerOrderHeader_Temp: Record "LSC Customer Order Header" temporary; var CustomerOrderLine_Temp: Record "LSC Customer Order Line" temporary; var CustomerOrderDiscountLine_Temp: Record "LSC CO Discount Line" temporary; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1598 -> internal procedure OnBeforeGetTokenValuesForCreateToken(var Token: Record "LSC Token"; var REC: Record "LSC POS Transaction"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1606 -> internal procedure OnBeforeCheckingMemberCardNoInValidateCardOnFile(PosCommand: Enum "LSC POS Command"; PosTransaction: Record "LSC POS Transaction"; var IsHandled: Boolean; var ValidationResult: Boolean; var ErrorReason: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1614 -> internal procedure OnBeforeValidateCardOnFile(PosCommand: Enum "LSC POS Command"; PosTransaction: Record "LSC POS Transaction"; var IsHandled: Boolean; var ValidationResult: Boolean; var ErrorReason: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1623 -> internal procedure OnBeforeCreatingTokenInSendPaymentTokenToStorage(var IsHandled: Boolean; CardEntry: Record "LSC POS Card Entry"; TokenType: Enum "LSC Token Type"; PosTransaction: Record "LSC POS Transaction");
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1628 -> internal procedure OnBeforeCreatingTokenInSendPaymentTokenToStorageV2(PosTransaction: Record "LSC POS Transaction"; var Token: Record "LSC Token"; var IsHandled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1637 -> internal procedure OnBeforeSendingPaymentTokenToStorage(var IsHandled: Boolean; CardEntry: Record "LSC POS Card Entry";
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1644 -> internal procedure OnAfterSendingPaymentTokenToStorage(CardEntry: Record "LSC POS Card Entry"; var TempToken: Record "LSC Token" temporary;
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1654 -> internal procedure OnBeforeGetPaymentTokenFromStorage(var IsHandled: Boolean; TokenType: Enum "LSC Token Type"; var TokenContractId: RecordId; var TokenContractType: Enum "LSC Token Contract Type";
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1660 -> internal procedure OnAfterGetPaymentTokenFromStorage(var TempToken: Record "LSC Token" temporary; var Result: Boolean; var ResponseCode: Code[30]; var ErrorText: Text; TokenType: Enum "LSC Token Type"; PosTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1665 -> internal procedure OnBeforeSelectTokenToUseForPayment(var IsHandled: Boolean; var TempToken: Record "LSC Token" temporary; TokenType: Enum "LSC Token Type"; MemberCard: Record "LSC Membership Card"; PosTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1670 -> internal procedure OnAfterSelectTokenToUseForPayment(var TempToken: Record "LSC Token" temporary; TokenType: Enum "LSC Token Type"; MemberCard: Record "LSC Membership Card"; PosTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1675 -> internal procedure OnAfterAddCardToFileExecuted(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1680 -> internal procedure OnAfterAddCardPressed(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1685 -> internal procedure OnAfterCardOnFilePressed(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var TenderTypeCode: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1690 -> internal procedure OnAfterCardOnFileExecuted(POSTransaction: Record "LSC POS Transaction"; POSTransLine: Record "LSC POS Trans. Line"; CurrInput: Text; TenderTypeCode: Code[10])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1696 -> internal procedure OnBeforeBalanceCheckingReturnsError(POSTransaction: Record "LSC POS Transaction"; SalesTypeCode: Code[20]; Balance: Decimal; GrossAmt: Decimal; LineDiscAmt: Decimal; PaymentAmt: Decimal; InputOrderLimit: Decimal; OnPosting: Boolean; var IsHandled: boolean; var ReturnValue: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1701 -> internal procedure OnAfterStartNewTransactionSalePressed(Keyed: Boolean; var REC: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1706 -> internal procedure OnMultiplyQtyAfterMultiplyWithCalc(var POSTransaction: Record "LSC POS Transaction"; var MultiplyWith: Decimal; var MutiplyValue: Decimal)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1711 -> internal procedure OnBeforeTotalGetRecommendation(REC: Record "LSC POS Transaction"; POSMenuLine: Record "LSC POS Menu Line"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1716 -> internal procedure OnGetOutstandingBalance(REC: Record "LSC POS Transaction"; var ReturnValue: Decimal)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1721 -> internal procedure OnBeforeZReportSuspendProcess(Store: Record "LSC Store"; var NoSuspPOSTransactionsVoided: Integer; var IsHandled: Boolean; var ReturnValue: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1726 -> internal procedure OnBeforeCheckMemberCard_POSTransaction(var CurrInput: Text; IsHandled: Boolean; var ReturnValue: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1732 -> internal procedure OnGetMemberInfoForPOSFailed(var CurrInput: Text; ResponseCode: Code[30]; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1738 -> internal procedure OnBeforeGetDataEntryProcessInfoCode(Info: Record "LSC Infocode"; var SkipInput: Boolean; var MoreInfo: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1743 -> internal procedure OnAfterGetVoucherNoValidateDataEntryInput(var POSDataEntryTypeCode: Code[20]; var PosDataEntryBalanceOnly: Boolean; VoucherNo: Code[20]; var ErrorOccured: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1748 -> internal procedure OnBeforeExtraPrintRequired(var ReturnValue: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1753 -> internal procedure OnAfterGetMemberDescription(var POSTransLine: Record "LSC POS Trans. Line"; MemberName: Text; MemberCardNo: Text[100])
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1758 -> internal procedure OnAfterValidateRecordIDInputBarcodes(inRecRef: RecordRef; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1763 -> internal procedure OnBeforeGetDataEntryProcessInfoCodeV2(var Infocode: Record "LSC Infocode"; var SkipInput: Boolean; var MoreInfo: Boolean; var IsHandled: Boolean; var IsExit: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1768 -> internal procedure OnBeforeCustomerOrderCreated(var REC: Record "LSC POS Transaction"; var DataBuffer: Record "LSC Customer Order Header" temporary; var DataLinesBuffer: Record "LSC Customer Order Line" temporary; var DataDiscountLineBuffer: Record "LSC CO Discount Line" temporary; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1773 -> internal procedure OnAfterMarkPressed(POSTransaction: Record "LSC POS Transaction"; POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1778 -> internal procedure OnBeforeInsertMemberLine(var Rec: Record "LSC POS Transaction"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1783 -> internal procedure OnBeforeTD_TenderDeclEndOfDayPressed(Rec: Record "LSC POS Transaction"; var GlobalMenuLine: Record "LSC POS Menu Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1788 -> internal procedure OnBeforeTendDeclareLogOff(EndOfDay: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1793 -> internal procedure OnAfterTendDeclareLogOff(EndOfDay: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1798 -> internal procedure OnAfterItemLineGetValuesFromDatabar(Databar: Text; var NewLine: record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1803 -> internal procedure OnBeforeCurrencyKeyPressed(var POSTransaction: Record "LSC POS Transaction"; var POSTransLine: Record "LSC POS Trans. Line"; var CurrInput: Text; var CurrCode: Code[10]; var CurrStatus: Integer; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1809 -> internal procedure OnBeforePostingGetRetriesParameters(var AllowPostingRetries: Boolean; var MaximumPostingTries: Integer)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1814 -> internal procedure TenderKeyPressedEx_OnBeforeRecModify(var POSTransaction: Record "LSC POS Transaction"; var PaymentAmount: Decimal; TenderType: Record "LSC Tender Type"; var CurrInput: Text; var Balance: Decimal; var ErrorTextIfNotProceed: Text; var Handled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1819 -> internal procedure TenderKeyPressedEx_OnAfterTenderChargeSelect(var POSTransaction: Record "LSC POS Transaction"; var PaymentAmount: Decimal; TenderType: Record "LSC Tender Type"; var CurrInput: Text; CardType: Code[10]; var Balance: Decimal; TenderChargeSelect: Integer; OldCurrInput: Decimal; var Tmp: Record "LSC Report Temp Table" temporary; var ErrorTextIfNotProceed: Text; var Handled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1824 -> internal procedure TenderKeyPressedEx_OnBeforeValidateCurrInput(var POSTransaction: Record "LSC POS Transaction"; var PaymentAmount: Decimal; TenderType: Record "LSC Tender Type"; var CurrInput: Text; var Balance: Decimal; var ErrorTextIfNotProceed: Text; var Handled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1829 -> internal procedure TenderKeyPressedEx_OnCancelPaymentOnBeforeExit(var POSTransaction: Record "LSC POS Transaction"; PaymentAmount: Decimal; TenderType: Record "LSC Tender Type"; CurrInput: Text; Balance: Decimal; KeyboardAmount: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1834 -> internal procedure TenderKeyPressedEx_OnValidateTenderOnBeforeErrorBeep(var POSTransaction: Record "LSC POS Transaction"; PaymentAmount: Decimal; TenderType: Record "LSC Tender Type"; CurrInput: Text; Balance: Decimal; KeyboardAmount: Boolean; var InfoTextDescription: Text);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1839 -> internal procedure TenderKeyPressedEx_OnBeforeTenderCheckLoyalty(var POSTransaction: Record "LSC POS Transaction"; PaymentAmount: Decimal; TenderType: Record "LSC Tender Type"; CurrInput: Text; Balance: Decimal; KeyboardAmount: Boolean; var InfoTextDescription: Text; var IsHandled: boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1844 -> internal procedure OnBeforeCheckShowNumericKeyboard_TenderKeyPressedEx(POSTransaction: Record "LSC POS Transaction"; TenderType: Record "LSC Tender Type"; var ShowNumKeypadCheck: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1849 -> internal procedure OnBeforeAskForQRCode(var CurrInput: Text; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1855 -> internal procedure OnFindPosCommandBeforeValidateInput(PosCommand: Enum "LSC POS Command"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1860 -> internal procedure ItemLineOnAfterCheckVATSetups(var POSTransaction: Record "LSC POS Transaction"; var Item: Record Item; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1865 -> internal procedure ItemLineOnAfterEvaluateSalesIsReturnSales(var POSTransaction: Record "LSC POS Transaction"; var Item: Record Item; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1870 -> internal procedure OnBeforeEvaluateSaleIsReturnItemPhase1()
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1875 -> internal procedure InsertPaymentLineOnBeforeSetAmountsMultiplyInTenderOperations(TenderType: Record "LSC Tender Type"; var NewLine: Record "LSC POS Trans. Line"; PosFuncProfile: Record "LSC POS Func. Profile"; PaymentAmount: Decimal; var isHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1880 -> internal procedure OnTransactionTenderedAfterInitAmounts(var REC: Record "LSC POS Transaction"; var TenderType: Record "LSC Tender Type"; var PaymentAmount: Decimal; var ChangeTender: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1885 -> internal procedure OnBeforeCheckStoreVATGroupCodeIsEmpty(Store: Record "LSC Store"; var SkipVatProdPostGrpLimitationCheck: Boolean; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1890 -> internal procedure OnTenderKeyPressedExAfterInitNewLine(var REC: Record "LSC POS Transaction"; var TenderType: Record "LSC Tender Type"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1895 -> internal procedure OnBeforeRoundPaymentAmount_TenderKeyPressedEx(var REC: Record "LSC POS Transaction"; TenderType: Record "LSC Tender Type"; PosFuncProfile: Record "LSC POS Func. Profile"; var Balance: Decimal)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1900 -> internal procedure OnBeforeClearPrepaymentFromCustomer(Rec: Record "LSC POS Transaction"; var Customer: Record Customer; StoreSetup: Record "LSC Store")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1905 -> internal procedure OnBeforePosFuncChangeVATBusOnLine(var POSTransaction: Record "LSC POS Transaction"; var Customer: Record Customer; var POSFunctions: Codeunit "LSC POS Functions"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1910 -> internal procedure OnBeforeInsertIncExpLineValidateAmount(var NewLine: Record "LSC POS Trans. Line"; var PaymentAmount: Decimal; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1915 -> internal procedure OnAfterOfferPosCalcDeletAllProcessCustomer(var POSTransLine2: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1920 -> internal procedure OnAfterCalculateAmountToDiscDiscAmountGetAmountToDiscount(var POSTransLine: Record "LSC POS Trans. Line"; var AmountToDisc: Decimal)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1925 -> internal procedure OnBeforeGetBalanceCalcTotals(var POSTransaction: Record "LSC POS Transaction"; var PosFuncProfile: Record "LSC POS Func. Profile"; var Balance: Decimal; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1930 -> internal procedure OnTotalPressedBeforeDisplayTotal(PosFuncProfile: Record "LSC POS Func. Profile"; Balance: Decimal; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1935 -> internal procedure OnTotalPressedAfterSetInfoTextDescriptions(var CustomerOrderLine_Temp: Record "LSC Customer Order Line" temporary; PosFuncProfile: Record "LSC POS Func. Profile"; var InfoTextDescription: Text; var InfoTextDescription2: Text)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1940 -> internal procedure OnTotDiscAmPressedAfterCalcNewBalance(Rec: Record "LSC POS Transaction"; PosFunc: Codeunit "LSC POS Functions"; NewBalance: Decimal; var Tax: Decimal; var AmDec: Decimal)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1945 -> internal procedure OnValidatePriceCheckAfterInitTmpLine(var TmpLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1950 -> internal procedure OnMakeRepayTransBeforeInsertLineRec(var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1955 -> internal procedure OnBeforeGetNewBalance(PosTrLine: Record "LSC POS Trans. Line"; var NewBalance: Decimal; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1960 -> internal procedure OnStartNewTransactionBeforeInsertLoadCardNoInNewTrans(var POSTransaction: Record "LSC POS Transaction"; Store: Record "LSC Store")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1965 -> internal procedure OnBeforeInsertIncExpLine(var NewLine: Record "LSC POS Trans. Line"; POSTransaction: Record "LSC POS Transaction"; TransIncomeExpenseEntry_L: Record "LSC Trans. Inc./Exp. Entry")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1971 -> internal procedure OnCustomerOrderBeforeEnterShippingCost(var POSTransaction: Record "LSC POS Transaction"; var CustOrderHeaderTemp: Record "LSC Customer Order Header" temporary; var CustOrderLineTemp: Record "LSC Customer Order Line" temporary; var CustOrderDicLineTemp: Record "LSC CO Discount Line" temporary; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1976 -> internal procedure OnBeforeCreateOrderOnPOS(PosTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1981 -> internal procedure OnBeforeNegQtyChangeError(var REC: Record "LSC POS Transaction"; var LineRec: Record "LSC POS Trans. Line"; var CurrInput: Text; var Dec: Decimal; var ErrorText: Text[250]; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1986 -> internal procedure OnProcessCouponBeforeInsertCouponLine(var CouponEntry: Record "LSC Coupon Entry")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1991 -> internal procedure OnAfterLineSalesTypeChange(var POSTransaction: Record "LSC POS Transaction"; var NewLine: Record "LSC POS Trans. Line"; var LineSalesType: Code[20]; var LinePriceGroup: Code[10]; var CalcPriceNeeded: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:1996 -> internal procedure OnBeforeSeekAuthorisation(var REC: Record "LSC POS Transaction"; var CardEntryNo: Integer; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:2001 -> internal procedure ValidateCard_OnBeforeCheckOverTender(var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:2006 -> internal procedure TenderKeyPressedEx_OnAfterCalculatePaymentAmount(TenderType: Record "LSC Tender Type"; PaymentAmount: Decimal; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:2011 -> internal procedure OnBeforeRunProcessExternalCommand(POSMenuLine: Record "LSC POS Menu Line"; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:2016 -> internal procedure OnBeforeExchangePressed(ExchangeParameter: Text; var REC: Record "LSC POS Transaction"; var ExchangeTransaction: Record "LSC Transaction Header"; var POSRefundMgt: Codeunit "LSC POS Refund Mgt."; var stateTxt: Code[30]; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:2021 -> internal procedure OnAfterInfoSubCodeSetFilter(Info: Record "LSC Infocode"; var SubInfo: record "LSC Information Subcode")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:2026 -> internal procedure OnBeforeConfirmCOFullPayment(DataLinesBuffer: Record "LSC Customer Order Line" temporary; CustomerOrderLine_Temp: Record "LSC Customer Order Line" temporary; var PrepayCustomerOrder: Boolean; var IsHandled: Boolean);
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:2031 -> internal procedure OnAfterNewLineInsertTextLinkPressed(var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:2036 -> internal procedure OnBeforePostAndDeleteTransaction(var POSTransaction: Record "LSC POS Transaction"; var POSTransPostingStateTemp: Record "LSC POS Trans. Posting State" temporary; var IsHandled: Boolean)
+src/codeunit/Cod60006.OPTPOSTransactionEvents.al:2041 -> internal procedure OnAfterCheckCustomerOrderInEditMemberContact(var POSTransaction: Record "LSC POS Transaction"; var gOldMemberCardNo: Text; var IsHandled: Boolean)
+
+## src/codeunit/Cod60007.OPTPOSTransactionEFT.al
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:22 -> procedure RunCommand(PosCommand: Enum "LSC POS COmmand"; var MenuLine: Record "LSC POS Menu Line"; var REC: Record "LSC POS Transaction"; var LineRec: Record "LSC POS Trans. Line";
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:46 -> procedure Init()
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:54 -> procedure InitEFTServer()
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:60 -> procedure CloseEFTServer()
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:66 -> procedure SetTokenSelectionValue(TokenSelection: Text)
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:71 -> local procedure TokenHasAlreadyBeenSelected(): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:87 -> local procedure GetReferencedReturnCardEntry(Transaction: Record "LSC POS Transaction"; var ReferencedCardEntry: Record "LSC POS Card Entry"): Boolean;
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:100 -> procedure ValidateCard(var REC: Record "LSC POS Transaction";
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:218 -> procedure UnprocessedPreAuthCheck(var REC: Record "LSC POS Transaction"; expectedPreAuths: Integer): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:228 -> procedure NextCardPhase(): Enum "LSC POS Command"
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:254 -> procedure SeekAuthorisation(var REC: Record "LSC POS Transaction"; var ReturnMessage: Text) CardEntryNo: Integer
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:276 -> procedure CalcVatOfPayment(var REC: Record "LSC POS Transaction"; CalcAmount: Decimal): Decimal
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:289 -> procedure AdjustCardAmountForTips(var REC: Record "LSC POS Transaction"; var pPaymentAmount: Decimal; var pBalance: Decimal)
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:312 -> procedure UnprocessedPreAuth(var REC: Record "LSC POS Transaction") cnt: Integer
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:331 -> procedure UseNumpad(): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:336 -> procedure GetCardType(): Code[10]
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:341 -> procedure GetCardTypeName(): Text[30]
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:346 -> procedure IsExpiryDateRequired(): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:351 -> procedure SetCardPhase(pPhase: Integer)
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:356 -> procedure SetComboCard(Credit: Boolean)
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:361 -> procedure SetCardOffline(Offline: Boolean)
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:366 -> procedure SetPassword(password: Text)
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:371 -> procedure SetExpiryDate(ExDate: Text)
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:376 -> procedure GetResult(): Integer
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:381 -> procedure GetAmount(): Decimal
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:386 -> procedure ProcessTipAndServiceCharge(var REC: Record "LSC POS Transaction")
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:392 -> procedure PreAuthUpdateCount(var pCardEntry: Record "LSC POS Card Entry"): Integer
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:397 -> procedure CardSlipsPrintingConfirmed(var REC: Record "LSC POS Transaction"): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:423 -> procedure PrintCardSlips(var REC: Record "LSC POS Transaction"; cardSlipNo: Text)
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:454 -> procedure ValidateControl(CurrInput: Text; var ErrorReason: Text): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:470 -> procedure DisableVoidCardPrompt(): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:475 -> procedure TestVoidCardEntry(var REC: Record "LSC POS Transaction"; var OrgCardEntry: Record "LSC POS Card Entry"): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:497 -> procedure PostTransactionAfterVoid(): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:502 -> procedure VoidCardEntry(var CardEntryToVoid: Record "LSC POS Card Entry"; REC: Record "LSC POS Transaction"; var pVoidedCardEntryNo: Integer; var ErrorReason: Text): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:561 -> procedure OnMSRData(pTrack2Data: Text): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:566 -> procedure EFTShowLastTrans(var ErrorReason: Text): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:580 -> procedure EFTPrintLastTrans(var REC: Record "LSC POS Transaction"; var ErrorReason: Text): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:598 -> procedure EFTGetXReport(var REC: Record "LSC POS Transaction"; PrinterActive: Boolean; ErrorReason: Text): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:637 -> procedure EFTGetZReport(var REC: Record "LSC POS Transaction"; PrinterActive: Boolean; TrainingActive: Boolean; var ErrorReason: Text): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:687 -> procedure EFTStartSession(TransID: Text; var ErrorReason: Text): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:698 -> procedure EFTFinishSession(TransID: Text; var ErrorReason: Text): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:709 -> procedure GetFailedRequest(ReceiptNo_p: Code[20]; var CardEntry_p: Record "LSC POS Card Entry"): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:714 -> procedure RecoverFailedRequest(var FailedCardEntry_p: Record "LSC POS Card Entry"; var ErrorMessage_p: Text): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:719 -> procedure ProcessGetLastTransaction(var ErrorReason: Text): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:731 -> procedure VoidCardEntriesForTransaction(var REC: Record "LSC POS Transaction"; var LineRec: Record "LSC POS Trans. Line"; var Transaction: Record "LSC Transaction Header"; RealBalance: Decimal): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:754 -> procedure VoidCard(var REC: Record "LSC POS Transaction"; var LineRec: Record "LSC POS Trans. Line"; VoidCardEntry: Record "LSC POS Card Entry"; var pCardEntryNo: Integer; var pErrorReason: Text): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:768 -> local procedure CheckIfCardOnFileIsAllowed(PosCommand: Enum "LSC POS Command"): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:776 -> procedure ValidateCardOnFile(PosCommand: Enum "LSC POS Command"; PosTransaction: Record "LSC POS Transaction"; var ErrorReason: Text): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:811 -> procedure PreauthPressed(pCommand: Text; pParameter: Text; var REC: Record "LSC POS Transaction"; var LineRec: Record "LSC POS Trans. Line"; var CurrInput: Text; var Balance: Decimal; var PaymentAmount: Decimal; var ErrorReason: Text; var UsePaymentToken: Boolean): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:981 -> local procedure GetDefaultPreAuthAmountValue(CardEntryAmount: Decimal; DefaultPreAuthAmount: Decimal): Decimal
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:989 -> procedure GetTokenValuesForCreateToken(var REC: Record "LSC POS Transaction") Token: Record "LSC Token"
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:1004 -> local procedure TransTypeToPosCommand(TransType: Option Sale,Preauth,"Update-Preauth","Finalize-Preauth","AddCardToFile"): Enum "LSC POS Command"
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:1020 -> procedure GetPaymentTokenFromStorage(PosCommand: Enum "LSC POS Command"; TokenType: Enum "LSC Token Type"; TokenContractType: Enum "LSC Token Contract Type";
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:1058 -> procedure SelectTokenToUseForPayment(var TempToken: Record "LSC Token" temporary; MemberCard: Record "LSC Membership Card";
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:1114 -> procedure SendPaymentTokenToStorage(CardEntryNo: Integer; TokenType: Enum "LSC Token Type"; TokenConnectionType: Enum "LSC Token Contract Type";
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:1182 -> local procedure GetPaymentTokenIsSuccessful(var TempToken: Record "LSC Token" temporary; ErrorText: Text; NoTokenFoundErrorText: Text): Boolean
+src/codeunit/Cod60007.OPTPOSTransactionEFT.al:1195 -> local procedure OnGetEFTUtility(var iEFTUtil: interface "OPT IEFTUtility2"; var isHandled: Boolean)
+
+## src/codeunit/Cod60010.OPTPOSTransactionFunctions.al
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:23 -> procedure ProcessTransactionForPostingByState(var POSTransaction: Record "LSC POS Transaction"; POSTransPostingState: Record "LSC POS Trans. Posting State"; var PostingError: Boolean)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:29 -> procedure ProcessTransactionForPostingByState(var POSTransaction: Record "LSC POS Transaction"; POSTransPostingState: Record "LSC POS Trans. Posting State")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:47 -> internal procedure UpdateReplicationCountersOnVoidedTrainingTransaction(ReceiptNo: Code[20])
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:69 -> local procedure ProcessPostingByState(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:187 -> local procedure PrintingCheckReturnsError(POSTransaction: Record "LSC POS Transaction"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:200 -> local procedure VoucherCheckReturnsError(POSTransaction: Record "LSC POS Transaction"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:213 -> procedure ValidateVoucherEntry(ReceiptNo: Code[20]) VouchersAreOK: Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:297 -> local procedure ChargeAccountCheckReturnsError(POSTransaction: Record "LSC POS Transaction"; SalesTypeCode: Code[20]): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:315 -> local procedure LimitInputNeeded(POSTransaction: Record "LSC POS Transaction"; SalesTypeCode: Code[20]; Balance: Decimal; OnPosting: Boolean): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:336 -> procedure ProcessLimitInputOnPosting(POSTransaction: Record "LSC POS Transaction"; ResultOK: Boolean; Value: Text)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:355 -> local procedure BalanceCheckingReturnsError(POSTransaction: Record "LSC POS Transaction"; SalesTypeCode: Code[20]; Balance: Decimal; GrossAmt: Decimal; LineDiscAmt: Decimal; PaymentAmt: Decimal; InputOrderLimit: Decimal; OnPosting: Boolean): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:419 -> local procedure StoreOrderLimitOnPosting(ReceiptNo: Code[20]; OrderLimit: Decimal)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:425 -> local procedure SalesPersonInputNeeded(POSTransaction: Record "LSC POS Transaction"; SalesTypeCode: Code[20]; InputSalesPerson: Code[20]): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:449 -> procedure ProcessSalesPersonInputOnPosting(POSTransaction: Record "LSC POS Transaction"; Value: Text)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:459 -> local procedure DescriptionInputNeeded(POSTransaction: Record "LSC POS Transaction"; SalesTypeCode: Code[20]; InputDescription: Text; PreventNormalSale: Boolean; OnPosting: Boolean): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:486 -> procedure ProcessDescriptionInputOnPosting(POSTransaction: Record "LSC POS Transaction"; ResultOK: Boolean; Value: Text): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:504 -> local procedure ProcessTransactionBeforePosting(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:550 -> local procedure NotUsedCouponsCheckInputNeeded(POSTransaction: Record "LSC POS Transaction"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:587 -> procedure ProcessNotUsedCoupons(ReceiptNo: Code[20]): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:596 -> procedure CouponResetReservation(POSTransLine: Record "LSC POS Trans. Line"; PosFuncProfile: Record "LSC POS Func. Profile")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:626 -> local procedure KDSCheckInputNeeded(POSTransaction: Record "LSC POS Transaction"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:635 -> procedure ProcessKDSCheckInputOnPosting(ReceiptNo: Code[20])
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:644 -> local procedure PostAndDeleteTransaction(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:704 -> local procedure OnPrintingOrEmailingInputNeeded(): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:793 -> local procedure EmailOrPrint(POSHardwareProfile: Record "LSC POS Hardware Profile"; POSTerminal: Record "LSC POS Terminal"; LastTransaction: Record "LSC Transaction Header"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:863 -> local procedure SendEmail(LastTransaction: Record "LSC Transaction Header"; EmailAddress: Text): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:871 -> local procedure GetEmailInput(EmailInput: Text): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:879 -> procedure ProcessEmailInput(ResultOK: Boolean; InputValue: Text; PayLoad: Text)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:926 -> local procedure FinalizePosting()
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:996 -> local procedure CheckPostAsShipment(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1031 -> local procedure CheckDrawersToOpen(POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1082 -> local procedure UpdatePosInfoTexts()
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1111 -> local procedure RunReportIfNeeded(POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1123 -> local procedure OpenDrawers(POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1137 -> local procedure SaveLastTransaction(LastTransaction: Record "LSC Transaction Header")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1145 -> local procedure FillInValuesFromState(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1161 -> local procedure SaveValuesFromPOSTrans(POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1168 -> local procedure PosMessage(MessageText: Text)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1175 -> local procedure MessageBeep(MessageText: Text)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1182 -> local procedure ErrorBeep(MessageText: Text)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1189 -> local procedure FormatAmount(Amount: Decimal): Text
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1196 -> procedure GoToNextPostingState(POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1204 -> local procedure CancelPosting()
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1211 -> procedure GetPrePayment(ReceiptNo: Code[20]) res: Decimal
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1228 -> local procedure GetReceiptNoFromEmailPayLoad(PayLoad: Text): Code[20]
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1233 -> local procedure GetEmailPayLoad(ReceiptNo: Code[20]): Text
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1238 -> procedure IsPostTransEmailInput(PayLoad: Text): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1243 -> procedure RequestDescriptionForSalesTypeOnTransStart(POSTransaction: Record "LSC POS Transaction"; PreventNormalSales: Boolean): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1264 -> procedure ProcessDescriptionInputForSalesTypeOnTransStart(var POSTransaction: Record "LSC POS Transaction"; InputValue: Text; ResultOK: Boolean): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1275 -> local procedure RaiseVoidEvents(POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1288 -> procedure ProcessTransactionForSuspensionByState(var POSTransaction: Record "LSC POS Transaction"; POSTransSuspensionState: Record "LSC POS Trans. Susp. State")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1297 -> local procedure ProcessSuspensionByState(var POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1394 -> local procedure SuspendStateCheckReturnsError(): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1405 -> local procedure SuspendPermissionCheckReturnsError(): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1416 -> local procedure SuspendTrainingCheckReturnsError(): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1427 -> local procedure SuspendHospSalesTypeCheckReturnsError(POSTransaction: Record "LSC POS Transaction"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1465 -> local procedure SuspendIsRetrieveSuspendedTrans(POSTransaction: Record "LSC POS Transaction"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1483 -> local procedure SuspendCouponCheckReturnsError(POSTransaction: Record "LSC POS Transaction"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1499 -> local procedure SuspendPaymentCheckReturnsError(POSTransaction: Record "LSC POS Transaction"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1530 -> local procedure SuspendNotConfirmed(POSTransaction: Record "LSC POS Transaction"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1554 -> procedure ProcessLimitInputOnSuspending(POSTransaction: Record "LSC POS Transaction"; ResultOK: Boolean; Value: Text)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1573 -> local procedure StoreOrderLimitOnSuspending(ReceiptNo: Code[20]; OrderLimit: Decimal)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1580 -> procedure ProcessSalesPersonInputOnSuspending(POSTransaction: Record "LSC POS Transaction"; Value: Text)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1590 -> procedure ProcessDescriptionInputOnSuspending(POSTransaction: Record "LSC POS Transaction"; ResultOK: Boolean; Value: Text): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1609 -> local procedure SuspendTransaction(POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1633 -> procedure GoToNextSuspensionState(POSTransaction: Record "LSC POS Transaction")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1641 -> local procedure CancelSuspension()
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1646 -> local procedure GetSuspendSalesType(POSTransaction: Record "LSC POS Transaction"; var SalesType: Record "LSC Sales Type")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1657 -> local procedure GetSuspendSalesTypeCode(POSTransaction: Record "LSC POS Transaction"): code[20]
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1667 -> local procedure NoInputPostingSource(): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1674 -> local procedure DescriptionNeededOnPostingOrSuspend(SalesType: Record "LSC Sales Type"; OnPosting: Boolean): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1686 -> procedure ReOrderInsert(var PosTrLineTmp: Record "LSC POS Trans. Line" temporary; var lLineNo: Integer)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1721 -> procedure CopyLinkedLines(var PosTrLineTmp: Record "LSC POS Trans. Line" temporary; CopyLineNo: Integer; QtyCopy: Decimal): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1749 -> procedure GetTransPostingState(ReceiptNo: code[20]; var POSTransPostingState: Record "LSC POS Trans. Posting State"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1758 -> procedure GetTransSuspensionState(ReceiptNo: code[20]; var POSTransSuspensionState: Record "LSC POS Trans. Susp. State"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1767 -> procedure PreventNegativeInventoryAutoStockUpdate(AutoStockUpdate: Boolean; Item: Record Item; SaleIsReturnSale: Boolean; NewLine: Record "LSC POS Trans. Line"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1792 -> procedure CheckPriceZeroIsValid(Price: Decimal; Item: Record Item): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1806 -> internal procedure HandleSalesPersonMode(var REC: Record "LSC POS Transaction"; PosFuncProfile: Record "LSC POS Func. Profile"; PosCommand: Enum "LSC POS Command")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1826 -> internal procedure ExchangePressed(ExchangeParameter: Text; var REC: Record "LSC POS Transaction"; var ExchangeTransaction: Record "LSC Transaction Header"; var POSRefundMgt: Codeunit "LSC POS Refund Mgt."; var stateTxt: Code[30])
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1875 -> local procedure ExchangeLookUp(var REC: Record "LSC POS Transaction"; var POSRefundMgt: Codeunit "LSC POS Refund Mgt."; ExchangeTransaction: Record "LSC Transaction Header")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1895 -> local procedure ProcessExchange(var REC: Record "LSC POS Transaction"; var POSRefundMgt: Codeunit "LSC POS Refund Mgt."; var stateTxt: Code[30]; ExchangeParameter: Text)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1920 -> local procedure ConvertToExchangeTransaction(var REC: Record "LSC POS Transaction"; var stateTxt: Code[30])
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1956 -> internal procedure ReversePOSTransDisc(var POSTransLine: Record "LSC POS Trans. Line")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:1973 -> local procedure InsertSameLinesAsSales(var REC: Record "LSC POS Transaction"; ExchangeParameter: Text)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:2003 -> internal procedure VoidExchangeTransaction(var REC: Record "LSC POS Transaction"; var stateTxt: Code[30]; LineRec: Record "LSC POS Trans. Line")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:2028 -> internal procedure TotalCheckExchangeTransaction(var REC: Record "LSC POS Transaction"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:2064 -> internal procedure ExtraPrintRequired(TransactionHeader: Record "LSC Transaction Header"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:2092 -> internal procedure Process_T_Transaction(var CurrInput: Text; var NewLine: Record "LSC POS Trans. Line"; POSFuncProfile: Record "LSC POS Func. Profile"; Selection: Text)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:2117 -> procedure SearchMemberContact()
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:2124 -> internal procedure LookupTransactionListPanelFiltered(var CurrInput: Text; var NewLine: Record "LSC POS Trans. Line"; POSFuncProfile: Record "LSC POS Func. Profile")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:2157 -> internal procedure RetrieveTransactionToRefundByReceipt(CurrInput: Text; POSFuncProfile: Record "LSC POS Func. Profile"; var TransactionHeader: Record "LSC Transaction Header"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:2170 -> internal procedure BuildLookupDataFilterString(TransactionHeader: Record "LSC Transaction Header"; var FilterString: Text)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:2185 -> internal procedure CommitIfTSorDD(POSFuncProfile: Record "LSC POS Func. Profile")
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:2193 -> internal procedure RunPOSLookup(FilterString: Text; LookupID: Code[20]; LookupRecRef: RecordRef; var POSLookup: Record "LSC POS Lookup"; var NewLineTemp: Record "LSC POS Trans. Line" temporary)
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:2203 -> local procedure ChooseBeahviour()
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:2212 -> internal procedure SalePressedInPaymentState(STATE: Enum "LSC POS Transaction State"): Boolean
+src/codeunit/Cod60010.OPTPOSTransactionFunctions.al:2224 -> local procedure OnBeforeStopAllBackgroundSession()
+
+## src/codeunit/Cod60011.OPTPOSEFTUtility.al
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:5 -> trigger OnRun()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:114 -> internal procedure InitEFTServer()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:119 -> internal procedure InitEFTServer(posTerminalNo: Code[10])
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:124 -> internal procedure InitEFTServer(posTerminalNo: Code[10]; EFTDeviceID: Code[20])
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:144 -> local procedure ClearEFT(DoClearTokenData: Boolean)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:151 -> internal procedure ClearEFT()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:178 -> internal procedure SetTransType(TransType: Integer)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:183 -> internal procedure SetTrack2(Track2: Text)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:189 -> internal procedure SetCardNo(CardNo: Text)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:194 -> internal procedure SetAmount(CardAmount: Decimal)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:199 -> internal procedure SetVAT(CardVAT: Decimal)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:204 -> internal procedure SetCashback(CardCashback: Decimal)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:209 -> internal procedure SetTip(CardTip: Decimal)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:214 -> internal procedure SetSurcharge(CardSurcharge: Decimal)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:219 -> internal procedure SetCurrencyCode(pCurrencyCode: Code[10])
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:224 -> internal procedure SetComboCard(Credit: Boolean)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:228 -> internal procedure SetAuthCode(AuthCode: Code[10])
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:233 -> internal procedure SetPassword(Password: Code[10])
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:237 -> internal procedure SetVoidTrans(TransNo: Code[10]; BatchNo: Code[10])
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:241 -> internal procedure SetServer(Server: Text[30])
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:245 -> internal procedure SetManualEntry(ManualEntry: Boolean)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:250 -> internal procedure SetAdditionalID(additionalID: Text)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:255 -> internal procedure SetQRCode(QRCode: Text)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:260 -> internal procedure SetAskGratuity(AskGratuity: Boolean)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:265 -> internal procedure SeekAuth()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:270 -> internal procedure TestCard()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:276 -> internal procedure PollStatus(var PollStatusTxt: Text[200]): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:320 -> internal procedure SetExpiryDate(ExDate: Text[5])
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:324 -> internal procedure GetCardNumber(): Text[30]
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:329 -> internal procedure GetExpiryDate(): Text[5]
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:334 -> internal procedure GetCardTypeName(): Text[30]
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:339 -> internal procedure GetCardType(): Code[10]
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:344 -> internal procedure GetResult(): Integer
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:349 -> internal procedure IsComboCard(): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:354 -> internal procedure IsPollable(): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:359 -> internal procedure IsPasswordRequired(MgrKey: Boolean): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:364 -> internal procedure IsExpiryDateRequired(): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:369 -> internal procedure IsVoidMSRRequired(): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:374 -> internal procedure InsertLogEntry(): Integer
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:379 -> internal procedure InsertLogEntry(suppressEvent: Boolean): Integer
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:440 -> procedure NextEntryNo(): Integer
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:452 -> internal procedure SetFromMSR(FromMSR: Boolean)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:456 -> internal procedure SetTenderType(tenderType: Code[10])
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:461 -> internal procedure PreAuthHasBeenFinalized(var PreAuthCardEntry: Record "LSC POS Card Entry"): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:466 -> internal procedure PreAuthHasBeenCancelled(var PreAuthCardEntry: Record "LSC POS Card Entry"): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:471 -> local procedure PreAuthWasClosedWith(ClosedWith: Option "Finalize;Cancel"; var PreAuthCardEntry: Record "LSC POS Card Entry"): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:505 -> internal procedure PreAuthUpdateCount(var PreAuthCardEntry: Record "LSC POS Card Entry"): Integer
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:516 -> internal procedure TestVoidCardEntry(OrgCardEntry: Record "LSC POS Card Entry"): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:535 -> internal procedure VoidCardEntry(OrgCardEntry: Record "LSC POS Card Entry"; SlipNo: Code[20]; Track2: Text) NewEntryNo: Integer
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:544 -> internal procedure VoidCardEntry2(OrgCardEntry: Record "LSC POS Card Entry"; receiptNo: Code[20]; printSlips: Boolean; var VoidCardEntryNo: Integer; var ErrorReason: Text): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:697 -> local procedure SetEFTAmountVariables(OrgCardEntry: Record "LSC POS Card Entry")
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:713 -> local procedure VoidPreAuth(var pPreAuthCardEntry: Record "LSC POS Card Entry")
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:723 -> local procedure ClosePreAuth(var pPreAuthCardEntry: Record "LSC POS Card Entry")
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:733 -> internal procedure UpdatePreAuth(var PreAuthCardEntry: Record "LSC POS Card Entry"; NewAmount: Decimal; var ErrorReason: Text): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:738 -> internal procedure FinalizePreAuth(var PreAuthCardEntry: Record "LSC POS Card Entry"; NewAmount: Decimal; var ErrorReason: Text): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:743 -> local procedure UsePreAuth(TransType: Integer; var PreAuthCardEntry: Record "LSC POS Card Entry"; NewAmount: Decimal; var ErrorReason: Text): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:781 -> internal procedure CloseEFTServer()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:785 -> internal procedure InitLogEntry(pReceiptNo: Code[20]): Integer
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:826 -> local procedure Get10DigitClientTransID(var pCardEntry: Record "LSC POS Card Entry")
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:854 -> internal procedure GetAmount(): Decimal
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:859 -> internal procedure GetVat(): Decimal
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:864 -> internal procedure GetCashback(): Decimal
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:869 -> internal procedure GetTip(): Decimal
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:874 -> internal procedure IsAuthCodeRequired(): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:879 -> internal procedure GetMessage(): Text
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:884 -> internal procedure IsErrorState(): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:889 -> local procedure ProcessAddCardToFile()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:909 -> local procedure ProcessPurchase()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:947 -> local procedure ProcessOfflinePurchase()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:968 -> local procedure ProcessRefund()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:997 -> local procedure ProcessVoid()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1025 -> internal procedure ShowLastTransactionInfo()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1032 -> internal procedure PrintLastTransaction()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1049 -> procedure PrintPendingLinesCopy(ClientTransID_p: Text): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1059 -> local procedure ReprintLastTrans()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1067 -> internal procedure ProcessGetLastTransaction()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1075 -> local procedure ShowLastTransactionMessage()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1095 -> internal procedure ProcessXReport()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1105 -> internal procedure ProcessZReport()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1115 -> internal procedure StartSession(TransactionId: Text)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1122 -> internal procedure FinishSession(TransactionId: Text)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1129 -> procedure DirectIO(Command: Integer; var Data: Integer; var StringData: Text)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1143 -> procedure RetrievePrintLines(ReceiptNo_p: Code[20])
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1148 -> internal procedure RetrievePrintLines(ReceiptNo_p: Code[20]; ForceMerchantPrint: Boolean; ForceCustomerPrint: Boolean)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1219 -> local procedure PrintNode(NodeName: Text; ForPrinting: Boolean)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1241 -> internal procedure PrintEFT(Txt: Text)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1258 -> internal procedure PrintEFTLine(txt: Text)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1263 -> internal procedure PrintEFTLineEx(Txt: Text; FontSize: Option Small,Medium,Large,Big; FontWeight: Option Normal,Bold)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1280 -> internal procedure PrintEFTPending(Typ: Text[5]): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1290 -> internal procedure PrintEFTPurge(Typ: Text[5])
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1301 -> local procedure SetNextPrintLineNo(FileNo: Integer; ReceiptNo: Code[20]; Destination: Text[5])
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1315 -> local procedure SaveResponse()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1353 -> local procedure InitPage()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1362 -> internal procedure ProcessTipAmount(ReceiptNo: Text; SuggestedLineNo: Integer): Integer
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1413 -> internal procedure ProcessServiceChargeAmount(ReceiptNo: Text; SuggestedLineNo: Integer): Integer
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1464 -> internal procedure UseNumpad(): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1469 -> internal procedure AllwaysIncludeTips(): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1474 -> internal procedure AskToIncludeTips(): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1479 -> procedure SetCardType(var CardEntryRec: Record "LSC POS Card Entry"): Code[10]
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1494 -> internal procedure SetCardTypeNameFromNoSeries(var CardEntryRec: Record "LSC POS Card Entry")
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1518 -> local procedure SetCardTypeFromEFTMapping(var CardEntryRec: Record "LSC POS Card Entry"): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1530 -> procedure GetCardNoSerieFromCardNo(StoreNo: Code[10]; MaskedCardNo: Text; var CardNoSeriesRecID: RecordID): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1564 -> procedure PrintPendingLines(SlipNoText: Text)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1586 -> local procedure FontSizeTextToInt(txt: Text): Integer
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1601 -> local procedure FontWeightTextToInt(txt: Text): Integer
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1612 -> internal procedure DisableVoidCardPrompt(): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1617 -> internal procedure PostTransactionAfterVoid(): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1622 -> procedure CalculateSurcharge(Amount_p: Decimal; var ChargeSetup_p: Record "LSC Charge Setup") Surcharge: Decimal
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1639 -> internal procedure GetFailedRequest(ReceiptNo_p: Code[20]; var CardEntry_p: Record "LSC POS Card Entry"): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1647 -> internal procedure GetFailedRequest(TerminalNo_p: Code[10]; ReceiptNo_p: Code[20]; var CardEntry_p: Record "LSC POS Card Entry"): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1682 -> local procedure IsRecoveryAllowed(CardEntry: Record "LSC POS Card Entry"): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1690 -> internal procedure RecoverFailedRequest(var FailedCardEntry_p: Record "LSC POS Card Entry"; var ErrorMessage_p: Text): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1781 -> local procedure GetClientTransactionID(var pCardEntry: Record "LSC POS Card Entry"): Text
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1790 -> procedure GetReceiptNoFromClientTransID(var ClientTransID_p: Text): Text
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1809 -> local procedure RunRequest(RequestType: Text)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1835 -> local procedure ProcessPreAuth()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1848 -> local procedure ProcessUpdatePreAuth()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1864 -> procedure PrintBuffer(PrinterID_p: Text; var pPrintBufferRecRef_p: RecordRef; var ErrorText_p: Text): Boolean
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1884 -> procedure GetVar(name: Text): Text
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1898 -> local procedure CountNodes(NodeName: Text): Integer
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1903 -> local procedure StartEFTRequest(RequestType_p: Text; TransactionID_p: Text)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1908 -> local procedure SetAmountBreakdown(Amount_p: Decimal; TaxAmount_p: Decimal; CashbackAmount_p: Decimal; SurchargeAmount_p: Decimal; TipAmount_p: Decimal; pCurrencyCode: Code[10])
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1913 -> procedure SetVar(Property_p: Text; Value_p: Text)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1918 -> local procedure SetVar(Property_p: Text; Value_p: Decimal)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1923 -> local procedure SetVar(Property_p: Text; Value_p: Integer)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1928 -> local procedure SetVar(Property_p: Text; Value_p: Boolean)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1933 -> local procedure SetCardEntryAndTerminal(CardEntryNo_p: Integer; TerminalNo_p: Code[10])
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1938 -> local procedure SetTransactionIdentification(var ReferencedInformationTemp: Record "LSC Referenced Returns")
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1943 -> local procedure SetCardDetails(var ReferencedInformationTemp: Record "LSC Referenced Returns")
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1950 -> internal procedure ClearTokenData()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1955 -> local procedure SetTokenDataVar(TokenData_p: Record "LSC Token")
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1960 -> local procedure GetTokenDataResponse(var TokenData_p: Record "LSC Token")
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1975 -> internal procedure SetToken(Token: Text)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1980 -> internal procedure SetTokenData(Token: Record "LSC Token")
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1985 -> internal procedure GetTokenData(var Token: Record "LSC Token")
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:1990 -> internal procedure CreateTokenJson(Token: Record "LSC Token") tokenDataJson: JsonObject
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2002 -> local procedure TokenTypeToText(TokenType: Enum "LSC Token Type"): Text
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2024 -> local procedure InitiatorReasonToText(InitiatorReason: Enum "LSC Token Initiator Reason"): Text
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2034 -> local procedure InitiatorToText(Initiator: Enum "LSC Token Initiator"): Text
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2044 -> local procedure TextToTokenType(TokenTypeText: Text): Enum "LSC Token Type"
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2067 -> local procedure TextToInitiator(InitiatorText: Text): Enum "LSC Token Initiator"
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2078 -> local procedure TextToInitiatorReason(InitiatorReasonText: Text): Enum "LSC Token Initiator Reason"
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2090 -> procedure ScreenDisplay(pText: Text)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2104 -> internal procedure SetReferencedReturns(CardEntry: Record "LSC POS Card Entry")
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2109 -> internal procedure ClearReferencedReturns()
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2114 -> internal procedure CreateReferencedReturnJson(var ReferenceInformationTemp: Record "LSC Referenced Returns"): JsonObject
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2129 -> internal procedure CreateCardDetailsJson(var ReferenceInformationTemp: Record "LSC Referenced Returns"): JsonObject
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2140 -> procedure SetTestMode(NewValue_p: Boolean)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2145 -> procedure SetAutoTestReponse(ResponseJson_p: JsonObject)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2172 -> local procedure OnBeforeVoid(POSTerminal: Record "LSC POS Terminal"; var EFTReversal: Text; var EFTAmount: Decimal; var EFTTenderType: Text; var EFTResult: Integer; var IsHandled: Boolean; var EFTCurrencyCode: Code[10]);
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2177 -> local procedure OnBeforeEFTRequest(POSTerminalNo: Text; RequestType: Text; var requestJson: JsonObject; var IsHandled: Boolean; var POSCardEntry: Record "LSC POS Card Entry"; var PEFT2: Page "LSC POS EFT Dialog 2")
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2182 -> local procedure OnAfterEFTRequest(POSTerminalNo: Text; RequestType: Text; var responseJson: JsonObject);
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2187 -> local procedure OnBeforePullStatus(var POSCardEntry: Record "LSC POS Card Entry"; var EFTResult: Integer; var EFTMessage: Text; var isHandled: Boolean);
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2192 -> local procedure OnBeforeProcessingInPollStatus(var POSCardEntry: Record "LSC POS Card Entry"; var EFTAdditionalID: Text; var EFTQRCode: Text; var EFTCurrencyCode: Code[10];
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2199 -> local procedure OnAfterInsertLogEntry(CardEntryCopy: Record "LSC POS Card Entry");
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2204 -> local procedure OnBeforeModifyLogEntry(var CardEntry: Record "LSC POS Card Entry")
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2209 -> local procedure OnBeforePrintBuffer(pPrinterID: Text; var pPrintBufferRecRef: RecordRef; var pReturnValue: Boolean; var pErrorText: Text; var pIsHandled: Boolean)
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2215 -> local procedure OnAutoTestEFTRequest(POSTerminalNo: Text; RequestType: Text; var requestJson: JsonObject);
+src/codeunit/Cod60011.OPTPOSEFTUtility.al:2220 -> local procedure OnAutoTestGetVar(pVarName: Text; var pResponse: Text; var pHandled: Boolean);

@@ -1,0 +1,72 @@
+interface "Opt LSC IEFTUtility"
+{
+    procedure AllwaysIncludeTips(): boolean;
+    procedure AskToIncludeTips(): Boolean;
+    procedure ClearEFT();
+    procedure CloseEFTServer();
+    procedure GetAmount(): Decimal
+    procedure GetCardType(): Code[10]
+    procedure GetCardTypeName(): Text[30]
+    procedure GetCashback(): Decimal
+    procedure GetFailedRequest(pReceiptNo: Code[20]; var pCardEntry: Record "LSC POS Card Entry"): Boolean;
+    procedure GetMessage(): Text
+    procedure GetResult(): Integer
+    procedure GetTip(): Decimal
+    procedure GetVat(): Decimal
+    procedure InitEFTServer();
+    procedure InitLogEntry(pReceiptNo: Code[20]): Integer;
+    procedure InsertLogEntry(): Integer
+    procedure IsAuthCodeRequired(): Boolean
+    procedure IsComboCard(): Boolean
+    procedure IsErrorState(): Boolean
+    procedure IsExpiryDateRequired(): Boolean
+    procedure IsPasswordRequired(MgrKey: Boolean): Boolean
+    procedure IsPollable(): Boolean
+    procedure IsVoidMSRRequired(): Boolean
+    procedure PollStatus(var PollStatusTxt: Text[200]): Boolean
+    procedure PostTransactionAfterVoid(): Boolean
+    procedure PrintEFTPending(typ: Text[5]): Boolean
+    procedure PrintEFTPurge(typ: Text[5])
+    procedure PrintLastTransaction();
+    procedure ProcessServiceChargeAmount(ReceiptNo: Text; SuggestedLineNo: Integer): Integer
+    procedure ProcessTipAmount(ReceiptNo: Text; SuggestedLineNo: Integer): Integer
+    procedure ProcessXReport();
+    procedure ProcessZReport();
+    procedure RecoverFailedRequest(var pFailedCardEntry: Record "LSC POS Card Entry"; var pErrorMessage: Text): Boolean;
+    procedure SeekAuth();
+    procedure SetAmount(CardAmount: Decimal);
+    procedure SetAskGratuity(AskGratuity: Boolean);
+    procedure SetAuthCode(AuthCode: Code[10]);
+    procedure SetCardNo(CardNo: Text);
+    procedure SetCashback(CardCashback: Decimal);
+    procedure SetComboCard(Credit: Boolean);
+    procedure SetCurrencyCode(pCurrencyCode: Code[10]);
+    procedure SetExpiryDate(ExDate: Text[5])
+    procedure SetPassword(Password: Code[10]);
+    procedure SetQRCode(QRCode: Text);
+    procedure SetServer(Server: Text[30]);
+    procedure SetSurcharge(CardSurcharge: Decimal);
+    procedure SetTenderType(tenderType: Code[10]);
+    procedure SetTip(CardTip: Decimal);
+    procedure SetToken(Token: Text);
+    procedure SetTrack2(Track2: Text);
+    procedure SetTransType(TransType: Integer);
+    procedure SetVAT(CardVAT: Decimal);
+    procedure SetVoidTrans(TransNo: Code[10]; BatchNo: Code[10]);
+    procedure ShowLastTransactionInfo();
+    procedure TestCard();
+    procedure TestVoidCardEntry(OrgCardEntry: Record "LSC POS Card Entry"): Boolean
+    procedure UseNumpad(): boolean;
+    procedure VoidCardEntry(OrgCardEntry: Record "LSC POS Card Entry"; SlipNo: Code[20]; Track2: Text): Integer
+
+    procedure FinalizePreAuth(var PreAuthCardEntry: Record "LSC POS Card Entry"; NewAmount: Decimal; var ErrorReason: Text): Boolean
+    procedure PreAuthHasBeenCancelled(var PreAuthCardEntry: Record "LSC POS Card Entry"): Boolean
+    procedure PreAuthHasBeenFinalized(var PreAuthCardEntry: Record "LSC POS Card Entry"): Boolean
+    procedure PreAuthUpdateCount(var PreAuthCardEntry: Record "LSC POS Card Entry"): Integer;
+    procedure ProcessGetLastTransaction();
+    procedure UpdatePreAuth(var PreAuthCardEntry: Record "LSC POS Card Entry"; NewAmount: Decimal; var ErrorReason: Text): Boolean
+
+    procedure StartSession(transactionId: Text);
+    procedure FinishSession(transactionId: Text);
+    procedure GetTendertype() tenderType: Code[10];
+}

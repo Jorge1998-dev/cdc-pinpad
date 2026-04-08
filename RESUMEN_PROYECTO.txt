@@ -1,0 +1,29 @@
+RESUMEN PROYECTO - cdc-pinpad
+
+Descripcion breve
+- Extension AL para LS Central POS enfocada en integracion de pagos pinpad (LAFISE), flujo EFT, anulaciones/refund y impresion de vouchers.
+- Incluye comunicacion HTTP al dispositivo/API, registro tecnico en Trans. LAF y extensiones de comportamiento POS.
+
+Clases principales (Codeunits)
+- ConnectCom (60000): Orquesta comunicacion con pinpad/API (sale, void, settle, refund), parsea respuestas y escribe log/resultado en Trans. LAF.
+- OPT Events Pinpad (60001): Subscribers de eventos POS para personalizar pagos, void/refund y calculos de moneda/totales.
+- Button Settle (60003): Punto de accion para proceso de settle.
+- ConectApi (60004): Cliente HTTP generico (POST) para enviar payload y devolver respuesta textual.
+- OPT POS Transaction Impl (60005): Nucleo del POS; maneja comandos, estados de transaccion, lookup VOID_TR, refund y void.
+- OPT POS Transaction Events (60006): Publicador de IntegrationEvents para extensibilidad del flujo POS.
+- OPT POS Transaction EFT (60007): Capa EFT de transaccion; validacion de tarjeta, autorizacion, void de tarjeta, preauth y token.
+- OPT POS Void Card Functions (60008): Flujo de confirmacion de tarjeta para void (confirmacion/re-swipe).
+- OPTs POS Transaction GUI (60009): Adaptador GUI (mensajes, confirmaciones, banners, teclado numerico).
+- OPT POS Transaction Functions (60010): Procesamiento por estado para posting/suspension y utilidades de lookup/void.
+- OPT POS EFT Utility (60011): Implementacion EFT principal (interfaces LS/OPT), manejo de token/referenced returns e impresion EFT.
+- OPT POS Transaction (60012): Fachada/wrapper de acceso a OPT POS Transaction Impl.
+- LAF Printing Utility (60013): Impresion/formateo de voucher, mascara de tarjeta y utilidades de texto de impresion.
+
+Interfaces
+- OPT IEFTUtility / OPT IEFTUtility2: Contratos para operaciones EFT y void card.
+- Opt LSC IEFTUtility / Opt LSC IEFTUtility2 / Opt LSC IEFTPrinter: Contratos de compatibilidad para integracion con LS Central.
+
+Objetos de datos y UI
+- Tablas: OPT Serial Port Setup (configuracion), Trans. LAF (bitacora/transacciones pinpad).
+- Paginas: Serial Ports Setup, Lafise Log.
+- Extensiones: Tender Type y POS Card Entry para campos/comportamiento de integracion.
