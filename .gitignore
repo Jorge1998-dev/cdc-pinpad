@@ -1,0 +1,34 @@
+# Archivos y carpetas de VS Code
+.history/
+.altemplates/
+.alcache/
+*.code-workspace
+
+# Archivos de configuración de usuario
+*.user
+*.vspscc
+*.suo
+
+# Archivos temporales y de sistema
+*.tmp
+*.log
+*.bak
+*.swp
+*.DS_Store
+Thumbs.db
+
+# Carpetas de salida de compilación
+.alpackages/
+out/
+bin/
+obj/
+
+# Archivos de entorno de Business Central
+*.app
+*.symbols.zip
+
+# Otros archivos innecesarios
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.idea/
