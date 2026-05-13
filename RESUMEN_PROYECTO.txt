@@ -1,29 +1,94 @@
 RESUMEN PROYECTO - cdc-pinpad
+Ultima revision: 2026-05-13
 
-Descripcion breve
-- Extension AL para LS Central POS enfocada en integracion de pagos pinpad (LAFISE), flujo EFT, anulaciones/refund y impresion de vouchers.
-- Incluye comunicacion HTTP al dispositivo/API, registro tecnico en Trans. LAF y extensiones de comportamiento POS.
+1. Vision general
+- Extension AL para Microsoft Dynamics 365 Business Central / LS Central POS enfocada en integracion de pagos con pinpad LAFISE.
+- Cubre venta con tarjeta, anulacion/void, refund, settle/cierre, reporte de detalle, registro tecnico de respuestas y emision de vouchers.
+- El objetivo funcional es conectar el flujo de tender/EFT del POS con un servicio local/API del pinpad, persistir la trazabilidad bancaria y sincronizar el resultado con "LSC POS Card Entry".
 
-Clases principales (Codeunits)
-- ConnectCom (60000): Orquesta comunicacion con pinpad/API (sale, void, settle, refund), parsea respuestas y escribe log/resultado en Trans. LAF.
-- OPT Events Pinpad (60001): Subscribers de eventos POS para personalizar pagos, void/refund y calculos de moneda/totales.
-- Button Settle (60003): Punto de accion para proceso de settle.
-- ConectApi (60004): Cliente HTTP generico (POST) para enviar payload y devolver respuesta textual.
-- OPT POS Transaction Impl (60005): Nucleo del POS; maneja comandos, estados de transaccion, lookup VOID_TR, refund y void.
-- OPT POS Transaction Events (60006): Publicador de IntegrationEvents para extensibilidad del flujo POS.
-- OPT POS Transaction EFT (60007): Capa EFT de transaccion; validacion de tarjeta, autorizacion, void de tarjeta, preauth y token.
-- OPT POS Void Card Functions (60008): Flujo de confirmacion de tarjeta para void (confirmacion/re-swipe).
-- OPTs POS Transaction GUI (60009): Adaptador GUI (mensajes, confirmaciones, banners, teclado numerico).
-- OPT POS Transaction Functions (60010): Procesamiento por estado para posting/suspension y utilidades de lookup/void.
-- OPT POS EFT Utility (60011): Implementacion EFT principal (interfaces LS/OPT), manejo de token/referenced returns e impresion EFT.
-- OPT POS Transaction (60012): Fachada/wrapper de acceso a OPT POS Transaction Impl.
-- LAF Printing Utility (60013): Impresion/formateo de voucher, mascara de tarjeta y utilidades de texto de impresion.
+2. Contexto tecnico
+- App: cdc-pinpad.
+- Publisher: Optimus Business Transformation.
+- Version actual: 1.0.3.4.
+- Runtime AL: 14.0.
+- Application: 25.0.0.0.
+- Rango de objetos: 60000..60149.
+- Dependencias principales: Base Application 25.5, System Application 25.5, Business Foundation 25.5, LS Central 25.3, Local Functionality for LS Central North America 25.3 y OPT - Nicaragua POS 3.0.0.0.
+- Feature habilitado: NoImplicitWith.
 
-Interfaces
-- OPT IEFTUtility / OPT IEFTUtility2: Contratos para operaciones EFT y void card.
-- Opt LSC IEFTUtility / Opt LSC IEFTUtility2 / Opt LSC IEFTPrinter: Contratos de compatibilidad para integracion con LS Central.
+3. Alcance funcional actual
+- Configuracion pinpad: tabla "OPT Serial Port Setup" define URL, puertos, tienda, terminal POS, credenciales tecnicas, credencial de anulacion, merchant/terminal por moneda y bandera de impresion del voucher comercio.
+- Tender pinpad: extension de "LSC Tender Type" agrega "Pinpad Integration", "CurrencyId" e "IDs"; la pagina de tipo de tender expone estos campos en grupo Pinpad.
+- Venta: eventos POS y utilidades EFT derivan el pago al pinpad; "ConnectCom.SendSale" arma el mensaje, lo codifica en Base64, llama a la API y registra respuesta aprobada/no aprobada en "Trans. LAF" y "LSC POS Card Entry".
+- Anulacion/void: el flujo usa el voucher/recibo original, "VOID_TR", "VoidCardEntry2" y "ConnectCom.SendVoid" para anular contra el dispositivo, registrar la respuesta y actualizar la entrada de tarjeta.
+- Refund: "ConnectCom.SendRefund" procesa devoluciones con registro LAF y generacion de entrada de tarjeta asociada.
+- Settle y reportes: "Button Settle" ejecuta comandos POS "SETTLE" y "REPORTLAFISE", delegando a "ConnectCom.SendSettle" y "ConnectCom.SenRepDetail".
+- Impresion: "LAF Printing Utility" se engancha a LS Central Print Utility para construir vouchers de cliente/comercio, formatear lineas, mascarar tarjeta y manejar codigos especiales de impresion.
+- Auditoria: "Trans. LAF" guarda datos bancarios, importes, moneda, autorizacion, voucher, referencia, EMV, batch/status y JSON crudo en BLOB.
 
-Objetos de datos y UI
-- Tablas: OPT Serial Port Setup (configuracion), Trans. LAF (bitacora/transacciones pinpad).
-- Paginas: Serial Ports Setup, Lafise Log.
-- Extensiones: Tender Type y POS Card Entry para campos/comportamiento de integracion.
+4. Flujo principal de pago
+- El usuario selecciona un tender con "Pinpad Integration".
+- Los subscribers de "OPT Events Pinpad" interceptan eventos del POS antes/despues de insertar lineas de pago y calculan moneda, monto y estado de transaccion.
+- La capa EFT ("OPT POS Transaction EFT" y "OPT POS EFT Utility") valida tarjeta, estados, prompts, token/preauth cuando aplica y solicita autorizacion.
+- "ConnectCom" localiza la configuracion por tienda/terminal, construye el payload LAFISE y llama a "ConectApi.GetApi".
+- "ConectApi" hace HTTP POST con contenido JSON hacia la URL configurada y devuelve la respuesta textual.
+- "ConnectCom" parsea la respuesta JSON, interpreta "Response Code" igual a "00" como aprobacion, registra "Trans. LAF", crea/actualiza "LSC POS Card Entry" y muestra resultado en POS.
+- "LAF Printing Utility" imprime o reimprime los vouchers a partir de la transaccion, configuracion y datos LAF.
+
+5. Arquitectura por capas
+- Integracion pinpad/API: "ConnectCom" y "ConectApi".
+- Orquestacion POS/EFT: "OPT Events Pinpad", "OPT POS Transaction EFT", "OPT POS EFT Utility", "OPT POS Void Card Functions".
+- Nucleo POS adaptado: "OPT POS Transaction Impl", "OPT POS Transaction Functions" y fachada "OPT POS Transaction".
+- Extensibilidad: "OPT POS Transaction Events" publica IntegrationEvents para puntos de extension internos.
+- Presentacion POS: "OPTs POS Transaction GUI" encapsula mensajes, confirmaciones, banners y teclado numerico.
+- Impresion: "LAF Printing Utility" extiende el buffer/formato de impresion LS Central.
+- Datos/configuracion: "OPT Serial Port Setup", "Trans. LAF", extensiones de tender y card entry.
+
+6. Objetos principales
+- Codeunit 60000 "ConnectCom": orquesta sale, void, settle, reporte y refund; arma mensajes, invoca API, parsea JSON, registra "Trans. LAF" y sincroniza "LSC POS Card Entry".
+- Codeunit 60001 "OPT Events Pinpad": subscribers de LS Central POS/EFT para pagos, void/refund, calculos de moneda, insercion de lineas y actualizacion de pagos posteados.
+- Codeunit 60003 "Button Settle": entrada de comando POS para settle y reporte LAFISE.
+- Codeunit 60004 "ConectApi": cliente HTTP POST generico para enviar payload JSON y devolver respuesta completa.
+- Codeunit 60005 "OPT POS Transaction Impl": implementacion amplia del flujo POS; contiene manejo de comandos, estados, lookup, "VOID_TR", posting, devoluciones, customer orders y pagos CDC.
+- Codeunit 60006 "OPT POS Transaction Events": publicador de eventos de integracion usados por la implementacion POS.
+- Codeunit 60007 "OPT POS Transaction EFT": capa de tarjeta/EFT; valida tarjeta, autorizacion, void, preauth, token, reportes X/Z y recuperacion de solicitudes fallidas.
+- Codeunit 60008 "OPT POS Void Card Functions": apoyo para confirmacion/lectura de tarjeta en anulaciones.
+- Codeunit 60009 "OPTs POS Transaction GUI": adaptador de interaccion POS.
+- Codeunit 60010 "OPT POS Transaction Functions": funciones de procesamiento POS, posting/suspension, lookup y void.
+- Codeunit 60011 "OPT POS EFT Utility": implementa contratos LS/OPT EFT, printer, token y referenced returns; centraliza log EFT, void card, print buffer y manejo de sesiones.
+- Codeunit 60012 "OPT POS Transaction": fachada que delega en "OPT POS Transaction Impl" para exponer operaciones POS al resto de la extension.
+- Codeunit 60013 "LAF Printing Utility": armado, formato e impresion de vouchers LAFISE.
+
+7. Interfaces y contratos
+- "OPT IEFTUtility" y "OPT IEFTUtility2": contratos propios para utilidades EFT y void card.
+- "Opt LSC IEFTUtility", "Opt LSC IEFTUtility2" y "Opt LSC IEFTPrinter": contratos de compatibilidad con LS Central y adaptaciones OPT.
+- "OPT POS EFT Utility" implementa interfaces estandar LS Central y contratos OPT, por lo que es el punto mas sensible para compatibilidad de versiones.
+
+8. Datos, paginas y permisos
+- Tabla 60000 "OPT Serial Port Setup": configuracion operativa del pinpad por tienda/terminal.
+- Tabla 60001 "Trans. LAF": bitacora bancaria y tecnica de transacciones LAFISE; clave por tienda, terminal, recibo y Trie.
+- Page 60000 "Serial Ports Setup": mantenimiento de configuracion pinpad.
+- Page 60001 "Lafise Log": consulta de bitacora LAFISE.
+- Tableextension 60000 "MCB LSC Tender Type": habilita integracion pinpad y metadatos de moneda/merchant.
+- Tableextension 60001 "MCB LSC POS Card entry": agrega "Voucher Number".
+- Pageextension 60000 "MCB LSC Tender Type Card": expone configuracion Pinpad en el tender.
+- Permissionset 60000 "Lafise": permisos sobre tablas, paginas y codeunits principales.
+
+9. Convenciones y puntos criticos
+- El codigo aprobado se identifica principalmente con "Response Code" = "00".
+- El payload hacia pinpad se construye como texto JSON, se codifica Base64 y se envia a "/api/SendTrans".
+- La correlacion funcional depende de tienda, terminal POS, recibo, tender, voucher y numero de intento Trie.
+- La separacion entre voucher cliente y comercio depende de configuracion e impresion en "LAF Printing Utility".
+- "Cod60005.OPTPOSTransactionImpl.al" es un archivo muy grande y acoplado al flujo LS Central; cualquier cambio ahi debe ser minimo, trazado y validado contra escenarios POS.
+- "ConnectCom" concentra integracion externa y persistencia; cambios en payload, parseo o manejo de errores pueden afectar ventas, void, refund y settle al mismo tiempo.
+
+10. Documentacion auxiliar
+- "requerimientos.md" contiene los requerimientos iniciales del sistema inferidos del analisis: plataforma, configuracion, venta, void, refund, settle/reportes, auditoria, impresion, seguridad y mantenimiento.
+- "bitacora_cambios.md" registra la regla de auditoria del proyecto y los cambios solicitados/aplicados por fecha.
+- "SKILLS.md" define la skill local "al-alto-nivel"; es obligatoria para cambios en archivos .al y recomienda validar dudas de AL con Microsoft Learn.
+
+11. Pendientes recomendados
+- Mantener "requerimientos.md" actualizado cuando se descubran nuevas reglas funcionales por escenario.
+- Mantener "bitacora_cambios.md" actualizado con cada cambio solicitado y aplicado.
+- Documentar codigos LAFISE usados en payload ("id", "claIDTran", "ReportType") y mapeo de errores del pinpad.
+- Definir una matriz minima de pruebas manuales/automatizadas para venta aprobada, venta rechazada, anulacion, refund, settle, reporte y fallo de comunicacion.

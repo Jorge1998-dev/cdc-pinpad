@@ -45,6 +45,7 @@ codeunit 60013 "LAF Printing Utility"
             TenderTyp.SetRange(Code, rLAFTrans.TenderType);
             if TenderTyp.FindFirst() then begin
                 if TenderTyp."Pinpad Integration" then begin
+                    ResetPrintBufferForVoucher(PrintBuffer, PrintBufferIndex, LinesPrinted);
                     IF NOT EvertecPrint_Dynamic(Sender, Transaction, FALSE, 'SALE', '', PrintBuffer, PrintBufferIndex, LinesPrinted) THEN;
                     Sender.ClosePrinter(2);
                 end;
@@ -430,6 +431,14 @@ codeunit 60013 "LAF Printing Utility"
 
         end;
         exit(tAAmountDecimal);
+    end;
+
+    local procedure ResetPrintBufferForVoucher(var PrintBuffer: Record "LSC POS Print Buffer"; var PrintBufferIndex: Integer; var LinesPrinted: Integer)
+    begin
+        PrintBuffer.Reset();
+        PrintBuffer.DeleteAll();
+        PrintBufferIndex := 1;
+        LinesPrinted := 0;
     end;
 
     procedure AddCutLine(Tray: Integer; TxtLine: Text; var PrintBuffer: Record "LSC POS Print Buffer"; var PrintBufferIndex: Integer; var LinesPrinted: Integer)
