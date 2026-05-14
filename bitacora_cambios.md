@@ -26,3 +26,15 @@ Este archivo debe registrar los cambios solicitados y aplicados en el proyecto p
 - Archivos modificados: `bitacora_cambios.md`, `requerimientos.md`, `RESUMEN_PROYECTO.txt`.
 - Resumen: se inicializa esta bitacora con regla de mantenimiento, se documentan requerimientos funcionales, configuracion, auditoria, impresion, compatibilidad y calidad, y se actualiza el resumen para reflejar que estos documentos ya no estan vacios.
 - Resultado esperado: futuras sesiones deben registrar los cambios aqui y mantener `requerimientos.md` sincronizado con reglas de negocio descubiertas.
+
+## 2026-05-14
+
+### Fase 1 - Anulaciones LAFISE con multiples pagos
+
+- Solicitud: ejecutar la Fase 1 de `Documentacion/iteraciones.md` para que una anulacion de recibo con multiples pagos LAFISE procese cada tarjeta/voucher correctamente.
+- Archivos modificados: `src/codeunit/Cod60000.ConnectCom.al`, `src/codeunit/Cod60001.OPTEventsPinpad.al`, `src/codeunit/Cod60007.OPTPOSTransactionEFT.al`, `src/codeunit/Cod60008.OPTPOSVoidCardFunctions.al`, `src/codeunit/Cod60011.OPTPOSEFTUtility.al`, `requerimientos.md`, `bitacora_cambios.md`.
+- Decision: usar `Voucher Number` como llave funcional para correlacionar la venta LAFISE original y el void; mantener `RunModal` por cada `LSC POS Card Entry` elegible y agregar contexto de voucher/monto al popup.
+- Resumen tecnico: el subscriber de refund toma control del ciclo de void, recorre entradas con voucher y controla el monto restante; `SendVoid` valida voucher/recibo original antes de llamar al pinpad y busca `Trans. LAF` por voucher; `VoidCardEntry2` recupera la anulacion filtrando por voucher.
+- Resultado esperado: si un recibo tiene dos o mas pagos LAFISE, se muestra confirmacion por cada tarjeta elegible y cada anulacion usa su propio `numReceipt`.
+- Validacion realizada: `git diff --check` sin errores y compilacion AL exitosa con `alc.exe`; quedaron warnings existentes de obsolescencia LS Central/AL1025 no relacionados con el cambio. La prueba funcional en POS/pinpad queda a cargo del usuario.
+- Riesgos residuales: el comportamiento depende de que `LSC POS Card Entry."Voucher Number"` este poblado desde la venta y de que el monto restante calculado por el flujo de refund corresponda al total a anular.

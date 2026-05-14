@@ -12,12 +12,16 @@ codeunit 60008 "OPT POS Void Card Functions"
         ReadFromMSR: Boolean;
         IsPreAuth: Boolean;
         VisibleCardNo: Text[50];
+        VoucherNo: Text[100];
+        VoidAmount: Decimal;
         posfunc: Codeunit "LSC POS Functions";
         Text000: Label 'Re-swipe the card for void:';
         Text001: Label 'Confirm card number for void:';
         Text005: Label 'Not the same card';
         Text006: Label 'Please re-swipe the card';
         Text007: Label 'Cancel Pre-Auth for card';
+        Text008: Label 'Voucher: %1';
+        Text009: Label 'Amount: %1';
 
     procedure SetCardNo(Card: Text[50])
     begin
@@ -40,19 +44,29 @@ codeunit 60008 "OPT POS Void Card Functions"
         IsPreAuth := preauth;
     end;
 
+    procedure SetVoidDetails(NewVoucherNo: Text[100]; NewVoidAmount: Decimal)
+    begin
+        VoucherNo := NewVoucherNo;
+        VoidAmount := NewVoidAmount;
+    end;
+
     procedure GetOk(): Boolean
     begin
         exit(Ok);
     end;
 
     procedure RunModal()
+    var
+        ConfirmText: Text;
     begin
+        ConfirmText := GetConfirmText();
+
         if ReadFromMSR then begin
             WaitingForSwipe := true;
-            Ok := PosCtrl.PosConfirm(Text000 + '\' + VisibleCardNo, false);
+            Ok := PosCtrl.PosConfirm(Text000 + '\' + ConfirmText, false);
             while Ok and (ReadCardNo = '') do begin
                 PosCtrl.PosMessage(Text006);
-                Ok := PosCtrl.PosConfirm(Text000 + '\' + VisibleCardNo, false);
+                Ok := PosCtrl.PosConfirm(Text000 + '\' + ConfirmText, false);
             end;
 
             if not Ok then
@@ -62,11 +76,26 @@ codeunit 60008 "OPT POS Void Card Functions"
         end
         else begin
             if IsPreAuth then
-                Ok := PosCtrl.PosConfirm(Text007 + '\' + VisibleCardNo, false)
+                Ok := PosCtrl.PosConfirm(Text007 + '\' + ConfirmText, false)
             else
-                Ok := PosCtrl.PosConfirm(Text001 + '\' + VisibleCardNo, false);
+                Ok := PosCtrl.PosConfirm(Text001 + '\' + ConfirmText, false);
             ReadCardNo := '';
         end;
+    end;
+
+    local procedure GetConfirmText(): Text
+    var
+        ConfirmText: Text;
+    begin
+        ConfirmText := VisibleCardNo;
+
+        if VoucherNo <> '' then
+            ConfirmText := ConfirmText + '\' + StrSubstNo(Text008, VoucherNo);
+
+        if VoidAmount <> 0 then
+            ConfirmText := ConfirmText + '\' + StrSubstNo(Text009, VoidAmount);
+
+        exit(ConfirmText);
     end;
 
     procedure OnMsrData(pTrack2Data: Text): Boolean

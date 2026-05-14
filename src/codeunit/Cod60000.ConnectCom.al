@@ -450,6 +450,18 @@ codeunit 60000 ConnectCom
         rTender.SetRange(Code, pTendertype);
         if rTender.FindSet() then begin
         end;
+
+        if pVoucher = '' then
+            Error('No se puede anular el pago LAFISE porque la entrada de tarjeta no tiene voucher asociado. Recibo: %1, tienda: %2, terminal: %3.',
+                pReceipt."Receipt No.", pReceipt."Store No.", pReceipt."POS Terminal No.");
+
+        if PosTransaction."Retrieved from Receipt No." = '' then
+            Error('No se puede anular el pago LAFISE porque el recibo %1 no tiene recibo original asociado.', pReceipt."Receipt No.");
+
+        if not FindApprovedLAFSaleByVoucher(pReceipt."Store No.", pReceipt."POS Terminal No.", PosTransaction."Retrieved from Receipt No.", pVoucher, FindTransLafise) then
+            Error('No se encontro una venta LAFISE aprobada para anular. Tienda: %1, terminal: %2, recibo original: %3, voucher: %4.',
+                pReceipt."Store No.", pReceipt."POS Terminal No.", PosTransaction."Retrieved from Receipt No.", pVoucher);
+
         tString := '';
         tString := tString + '{';
         tString := tString + '   "id":"2",'; // identifica el tipo de transaccion
@@ -538,14 +550,7 @@ codeunit 60000 ConnectCom
         end else begin
             itries := 1;
         end;
-
-
-        Clear(FindTransLafise);
-        FindTransLafise.SetRange("Store No.", pReceipt."Store No.");
-        FindTransLafise.SetRange("POS Terminal No.", pReceipt."POS Terminal No.");
-        FindTransLafise.SetRange("Receipt No.", PosTransaction."Retrieved from Receipt No.");
-        FindTransLafise.SetRange(Log, false);///
-        if FindTransLafise.FindLast() then begin
+        if FindTransLafise."Receipt No." <> '' then begin
             iErrors := 0;
             Clear(pTable);
             pTable.Init();
@@ -633,6 +638,29 @@ codeunit 60000 ConnectCom
     begin
         if O.Get(NameObject, Result) then
             exit(Result.AsValue().AsText());
+    end;
+
+    local procedure FindApprovedLAFSaleByVoucher(StoreNo: Code[10]; POSTerminalNo: Code[10]; ReceiptNo: Code[20]; VoucherNo: Text; var TransLAF: Record "Trans. LAF"): Boolean
+    begin
+        Clear(TransLAF);
+        TransLAF.SetRange("Store No.", StoreNo);
+        TransLAF.SetRange("POS Terminal No.", POSTerminalNo);
+        TransLAF.SetRange("Receipt No.", ReceiptNo);
+        TransLAF.SetRange("Voucher Number", VoucherNo);
+        TransLAF.SetRange(Log, false);
+        TransLAF.SetRange("Void Sale", false);
+        TransLAF.SetRange("Response Code", '00');
+        TransLAF.SetRange("Transaction Type", 'SALE');
+        if TransLAF.FindLast() then
+            exit(true);
+
+        Clear(TransLAF);
+        TransLAF.SetRange("Store No.", StoreNo);
+        TransLAF.SetRange("POS Terminal No.", POSTerminalNo);
+        TransLAF.SetRange("Receipt No.", ReceiptNo);
+        TransLAF.SetRange("Voucher Number", VoucherNo);
+        TransLAF.SetRange(Log, false);
+        exit(TransLAF.FindLast());
     end;
 
     local procedure GetStructuredSaleError(ResponseJson: JsonObject; IdError: Text): Text

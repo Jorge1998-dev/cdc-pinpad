@@ -624,8 +624,9 @@ codeunit 60011 "OPT POS EFT Utility" implements "LSC IEFTUtility", "LSC IEFTPrin
         rLAF.SetRange("POS Terminal No.", POSSESSION.TerminalNo());
         rLAF.SetRange("Store No.", POSSESSION.StoreNo());
         rLAF.SetRange("Receipt No.", Postrans.GetReceiptNo());
+        rLAF.SetRange("Voucher Number", OrgCardEntry."Voucher Number");
         rLAF.SetRange(log, false);
-        if rLAF.FindSet() then begin
+        if rLAF.FindLast() then begin
             CardEntry."EFT Auth.code" := '';
             CardEntry."Card Number" := Cprint.SetCardNumber(rLAF."Card Number");
             CardEntry."Card Type Name" := rLAF."Range Type";
@@ -656,7 +657,8 @@ codeunit 60011 "OPT POS EFT Utility" implements "LSC IEFTUtility", "LSC IEFTPrin
                 end;
             end;
             CardEntry.Modify();
-        END;
+        end else
+            Error('No se encontro la anulacion LAFISE aprobada para el recibo %1 y voucher %2.', Postrans.GetReceiptNo(), OrgCardEntry."Voucher Number");
 
         /// *****
         /// 

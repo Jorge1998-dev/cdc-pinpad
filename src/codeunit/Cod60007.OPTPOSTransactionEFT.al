@@ -524,6 +524,7 @@ codeunit 60007 "OPT POS Transaction EFT"
         Clear(VoidCardConfirm);
         TokenUtil.ClearTokenData();
         VoidCardConfirm.SetCardNo(CardEntryToVoid.GetCardNo);
+        VoidCardConfirm.SetVoidDetails(CardEntryToVoid."Voucher Number", CardEntryToVoid.Amount);
         if EFTUtil.IsVoidMSRRequired then
             VoidCardConfirm.SetReadFromMSR(CardEntryToVoid."MSR input");
         if CardEntryToVoid."Transaction Type" in [CardEntryToVoid."Transaction Type"::PreAuth, CardEntryToVoid."Transaction Type"::UpdatePreAuth] then

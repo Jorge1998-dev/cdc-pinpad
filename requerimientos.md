@@ -1,6 +1,6 @@
 # Requerimientos del Sistema - cdc-pinpad
 
-Ultima revision: 2026-05-13
+Ultima revision: 2026-05-14
 
 ## 1. Proposito
 
@@ -44,6 +44,9 @@ La extension `cdc-pinpad` debe integrar LS Central POS con el pinpad/API LAFISE 
 - El flujo de anulacion debe integrarse con el comando POS `VOID_TR` y las funciones EFT de void card.
 - El sistema debe validar y transportar la referencia necesaria para que LAFISE identifique la transaccion original.
 - El sistema debe usar la credencial administrativa de anulacion configurada cuando el payload lo requiera.
+- Si el recibo original contiene multiples pagos LAFISE, cada entrada de tarjeta elegible debe mostrar su propia confirmacion de anulacion.
+- Si el recibo original contiene multiples pagos LAFISE, cada anulacion debe correlacionarse por `Voucher Number` de la entrada `LSC POS Card Entry`, no solo por recibo original.
+- La busqueda del registro original en `Trans. LAF` debe usar tienda, terminal, recibo original, `Log = false` y `Voucher Number`; cuando exista, debe preferir una venta aprobada con `Response Code = "00"` y `Void Sale = false`.
 - Si la anulacion es aprobada, el sistema debe registrar `Trans. LAF`, actualizar la entrada de tarjeta y reflejar el resultado en el POS.
 - Si la anulacion no procede, el sistema debe impedir que el POS quede como si el pago hubiera sido anulado exitosamente.
 
@@ -52,6 +55,7 @@ La extension `cdc-pinpad` debe integrar LS Central POS con el pinpad/API LAFISE 
 - El sistema debe soportar devoluciones/refund con tarjeta integradas al pinpad.
 - El refund debe registrar respuesta bancaria, autorizacion, voucher, importe, moneda y referencia en `Trans. LAF`.
 - El refund debe generar o actualizar la entrada de tarjeta relacionada con el flujo POS.
+- Cuando el refund dependa de una transaccion LAFISE original, debe conservar la referencia/voucher del pago especifico para evitar mezclar datos entre pagos multiples del mismo recibo.
 - El sistema debe mostrar rechazo o error de pinpad al operador cuando `Response Code` no sea aprobado.
 
 ## 8. Settle y reportes LAFISE

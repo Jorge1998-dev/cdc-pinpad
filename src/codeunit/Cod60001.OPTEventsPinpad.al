@@ -371,9 +371,11 @@ codeunit 60001 "OPT Events Pinpad"
         Amount2: Decimal;
         LSCTransPayentry: Record "LSC Trans. Payment Entry";
         Amountdif: Decimal;
+        RemainingVoidAmount: Decimal;
+        VoidAmount: Decimal;
     begin
 
-        // IsHandled := true;
+        IsHandled := true;
         //if not IsHandled then begin
         Clear(REC);
 
@@ -385,7 +387,13 @@ codeunit 60001 "OPT Events Pinpad"
             RefundTransaction.SetRange("Store No.", POSSESION.StoreNo());
             RefundTransaction.SetRange("POS Terminal No.", POSSESION.TerminalNo());
             RefundTransaction.SetRange("Receipt No.", REC."Retrieved from Receipt No.");
-            IF RefundTransaction.FindSet() then;
+            IF not RefundTransaction.FindSet() then
+                exit;
+
+            CalcTotals();
+            RemainingVoidAmount := Round(Abs(RealBalance), 0.01, '=');
+            if RemainingVoidAmount = 0 then
+                RemainingVoidAmount := Round(Abs(RefundTransaction."Gross Amount"), 0.01, '=');
 
 
             VoidCardEntry.SetCurrentKey("Store No.", "POS Terminal No.", "Transaction No.", "Line No.");
@@ -394,8 +402,6 @@ codeunit 60001 "OPT Events Pinpad"
             VoidCardEntry.SetRange("Transaction No.", RefundTransaction."Transaction No.");
             if VoidCardEntry.FindSet then
                 repeat
-                    CalcTotals();
-
                     Amount1 := Round(RefundTransaction."Gross Amount", 0.01, '=');
                     Amount2 := Round(RefundTransaction."Gross Amount", 0.01, '=');
                     Clear(LSCTransPayentry);
@@ -406,9 +412,10 @@ codeunit 60001 "OPT Events Pinpad"
                     if LSCTransPayentry.findset() then begin
 
                     end;
-                    Amountdif := Round(Abs(VoidCardEntry.Amount), 0.01, '=') - Round(Abs(RealBalance), 0.01, '=');
+                    VoidAmount := Round(Abs(VoidCardEntry.Amount), 0.01, '=');
+                    Amountdif := VoidAmount - RemainingVoidAmount;
                     //if TestVoidCardEntry(VoidCardEntry) and (VoidCardEntry.Amount <= Abs(RealBalance)) or (Amount1 = Amount2) then begin
-                    if TestVoidCardEntry(VoidCardEntry) and (VoidCardEntry.Amount <= Round(Abs(RealBalance), 0.01, '=')) then begin
+                    if TestVoidCardEntry(VoidCardEntry) and (VoidCardEntry."Voucher Number" <> '') and (VoidAmount <= RemainingVoidAmount) then begin
                         //if TestVoidCardEntry(VoidCardEntry) and (Abs(RealBalance) <= VoidCardEntry.Amount) then begin
                         Retry := True;
                         while Retry do begin
@@ -419,6 +426,7 @@ codeunit 60001 "OPT Events Pinpad"
                             end
                         end;
                         InsertVoidPaymentLine(VoidCardEntry, CardEntryNo);
+                        RemainingVoidAmount := RemainingVoidAmount - VoidAmount;
                     end;
                 until VoidCardEntry.Next = 0;
         end;
